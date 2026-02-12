@@ -1,6 +1,8 @@
-WWW
+WWW/*
 docs
 esp-proto-backup
 GRADLE_STUFF
 __pycache__
 venv
+
+!WWW/static/
