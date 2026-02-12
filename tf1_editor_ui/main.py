@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import math
+import json
 from pathlib import Path
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
@@ -26,6 +27,8 @@ class TF1EditorApp:
     CANVAS_SIZE = 720
     WORLD_MAX = 360.0
     SCALE = CANVAS_SIZE / WORLD_MAX
+    EXPORT_CHANNELS = [10, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    EXPORT_DEVICE_TYPE = "DQF6_LS01"
 
     def __init__(self, root: tk.Tk) -> None:
         self.root = root
@@ -82,6 +85,9 @@ class TF1EditorApp:
 
         self.import_btn = ttk.Button(toolbar, text="Import TXT", command=self.import_txt_scene)
         self.import_btn.pack(side="left", padx=(12, 0))
+
+        self.export_btn = ttk.Button(toolbar, text="Export", command=self.export_runtime_json)
+        self.export_btn.pack(side="left", padx=(6, 0))
 
         left_wrap = ttk.Frame(self.root, padding=8)
         left_wrap.grid(row=1, column=0, sticky="ns")
@@ -203,11 +209,13 @@ class TF1EditorApp:
             self.text_font_combo.configure(state="readonly")
             self.preview_btn.configure(state="normal")
             self.import_btn.configure(state="normal")
+            self.export_btn.configure(state="normal")
             self.preview_entry.configure(state="normal")
             self.stop_btn.configure(state="disabled")
         else:
             self.preview_btn.configure(state="disabled")
             self.import_btn.configure(state="disabled")
+            self.export_btn.configure(state="disabled")
             self.preview_entry.configure(state="disabled")
             self.stop_btn.configure(state="normal")
 
@@ -339,6 +347,67 @@ class TF1EditorApp:
             return
         self.current_file = Path(path)
         self.save_project_cmd()
+
+    def export_runtime_json(self) -> None:
+        self._commit_ui_to_model()
+        scene = self.active_scene()
+        payload = {
+            "weight": 1,
+            "device_type": self.EXPORT_DEVICE_TYPE,
+            "scenes": [self._export_frame(frame) for frame in scene.frames],
+        }
+
+        path = filedialog.asksaveasfilename(
+            title="Export Runtime JSON",
+            defaultextension=".json",
+            initialdir=str(self.data_dir),
+            filetypes=[("JSON", "*.json")],
+        )
+        if not path:
+            return
+
+        Path(path).write_text(json.dumps(payload, indent=2), encoding="utf-8")
+        self.status_var.set(f"Exported runtime JSON: {Path(path).name}")
+
+    def _export_frame(self, frame: Frame) -> Dict[str, Any]:
+        return {
+            "time_ms": int(frame.time_ms),
+            "play_mode": 0,
+            "channels": list(self.EXPORT_CHANNELS),
+            "patterns": self._export_patterns(frame),
+        }
+
+    def _export_patterns(self, frame: Frame) -> List[Dict[str, Any]]:
+        exported: List[Dict[str, Any]] = []
+        for pattern in frame.patterns:
+            if isinstance(pattern, PathPattern):
+                points = [self._export_point(pt[0], pt[1]) for pt in pattern.points]
+                if len(points) >= 2:
+                    exported.append(
+                        {
+                            "close": bool(pattern.close),
+                            "color": normalize_color(pattern.color),
+                            "points": points,
+                        }
+                    )
+                continue
+
+            if isinstance(pattern, TextPattern):
+                for stroke in text_to_paths(pattern.text, pattern.x, pattern.y, pattern.size, pattern.font):
+                    if len(stroke) < 2:
+                        continue
+                    exported.append(
+                        {
+                            "close": False,
+                            "color": normalize_color(pattern.color),
+                            "points": [self._export_point(p[0], p[1]) for p in stroke],
+                        }
+                    )
+
+        return exported
+
+    def _export_point(self, x: float, y: float) -> List[int]:
+        return [int(round(clamp_coord(x))), int(round(clamp_coord(y)))]
 
     def import_txt_scene(self) -> None:
         path = filedialog.askopenfilename(
