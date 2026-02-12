@@ -1,0 +1,10 @@
+Command: cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DPYTHON=C:\Espressif\python_env\idf5.5_py3.13_env\Scripts\python.exe -DESP_PLATFORM=1 -DCCACHE_ENABLE=1 C:\Users\Owner\Desktop\Projects\lasertest2\esp-proto
+CMake Error at C:/Espressif/frameworks/esp-idf-v5.5.2/tools/cmake/component.cmake:319 (message):
+  Include directory
+  'C:/Users/Owner/Desktop/Projects/lasertest2/esp-proto/main/include' is not
+  a directory.
+Call Stack (most recent call first):
+  C:/Espressif/frameworks/esp-idf-v5.5.2/tools/cmake/component.cmake:494 (__component_add_include_dirs)
+  main/CMakeLists.txt:1 (idf_component_register)
+
+

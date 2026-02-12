@@ -1,0 +1,35 @@
+﻿{
+  "weight": 1,
+  "device_type": "DQF6_LS01",
+  "scenes": [
+    {
+      "time_ms": 6000,
+      "play_mode": 0,
+      "channels": [10, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "patterns": [
+        {
+          "close": true,
+          "color": "#FFFFFF",
+          "points": [[120, 120], [240, 120], [240, 240], [120, 240]]
+        },
+        {
+          "close": false,
+          "color": "#FF0000",
+          "points": [[140, 140], [220, 220]]
+        }
+      ]
+    },
+    {
+      "time_ms": 6000,
+      "play_mode": 0,
+      "channels": [10, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "patterns": [
+        {
+          "close": true,
+          "color": "#FFFFFF",
+          "points": [[120, 120], [240, 120], [240, 240], [120, 240]]
+        }
+      ]
+    }
+  ]
+}

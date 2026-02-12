@@ -1,0 +1,9 @@
+﻿[project]
+name = "tf1-generator"
+version = "0.1.0"
+description = "Minimal TF1 payload generator for the laser controller BLE protocol."
+authors = ["Laser Team <laser@example.com>"]
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+dependencies = []

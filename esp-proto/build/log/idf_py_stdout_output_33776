@@ -1,0 +1,50 @@
+Command: cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DPYTHON=C:\Espressif\python_env\idf5.5_py3.13_env\Scripts\python.exe -DESP_PLATFORM=1 -DCCACHE_ENABLE=1 C:\Users\Owner\Desktop\Projects\lasertest2\esp-proto
+-- IDF_TARGET not set, using default target: esp32
+-- Found Git: C:/Program Files/Git/cmd/git.exe (found version "2.52.0.windows.1")
+-- Minimal build - OFF
+-- ccache will be used for faster recompilation
+-- The C compiler identification is GNU 14.2.0
+-- The CXX compiler identification is GNU 14.2.0
+-- The ASM compiler identification is GNU
+-- Found assembler: C:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20251107/xtensa-esp-elf/bin/xtensa-esp32-elf-gcc.exe
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20251107/xtensa-esp-elf/bin/xtensa-esp32-elf-gcc.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20251107/xtensa-esp-elf/bin/xtensa-esp32-elf-g++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- git rev-parse returned 'fatal: not a git repository (or any of the parent directories): .git'
+-- Could not use 'git describe' to determine PROJECT_VER.
+-- Building ESP-IDF components for target esp32
+-- ESP-TEE is currently supported only on the esp32c6;esp32h2;esp32c5 SoCs
+-- Project sdkconfig file C:/Users/Owner/Desktop/Projects/lasertest2/esp-proto/sdkconfig
+Loading defaults file C:/Users/Owner/Desktop/Projects/lasertest2/esp-proto/sdkconfig.defaults...
+C:/Users/Owner/Desktop/Projects/lasertest2/esp-proto/sdkconfig.defaults:2 CONFIG_BTDM_CONTROLLER_MODE_BLE_ONLY was replaced with CONFIG_BTDM_CTRL_MODE_BLE_ONLY 
+C:/Users/Owner/Desktop/Projects/lasertest2/esp-proto/sdkconfig.defaults:3 CONFIG_BTDM_CONTROLLER_BLE_MAX_CONN was replaced with CONFIG_BTDM_CTRL_BLE_MAX_CONN 
+C:/Users/Owner/Desktop/Projects/lasertest2/esp-proto/sdkconfig.defaults:6 CONFIG_GATTC_ENABLE was replaced with CONFIG_BT_GATTC_ENABLE 
+warning: unknown kconfig symbol 'BTDM_CONTROLLER_BLE_SCAN_DUPL' assigned to '0' in C:/Users/Owner/Desktop/Projects/lasertest2/esp-proto/sdkconfig.defaults
+warning: unknown kconfig symbol 'BTDM_CONTROLLER_BLE_ADV_REPORT_FLOW_CTRL' assigned to 'y' in C:/Users/Owner/Desktop/Projects/lasertest2/esp-proto/sdkconfig.defaults
+-- Compiler supported targets: xtensa-esp-elf
+-- Found Python3: C:/Espressif/python_env/idf5.5_py3.13_env/Scripts/python.exe (found version "3.13.5") found components: Interpreter
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS
+-- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS - Success
+-- USING O3
+-- App "esp_proto" version: 1
+-- Adding linker script C:/Users/Owner/Desktop/Projects/lasertest2/esp-proto/build/esp-idf/esp_system/ld/memory.ld
+-- Adding linker script C:/Users/Owner/Desktop/Projects/lasertest2/esp-proto/build/esp-idf/esp_system/ld/sections.ld.in
+-- Adding linker script C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32/ld/esp32.rom.ld
+-- Adding linker script C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32/ld/esp32.rom.api.ld
+-- Adding linker script C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32/ld/esp32.rom.libgcc.ld
+-- Adding linker script C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32/ld/esp32.rom.newlib-data.ld
+-- Adding linker script C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32/ld/esp32.rom.syscalls.ld
+-- Adding linker script C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32/ld/esp32.rom.libc-funcs.ld
+-- Adding linker script C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32/ld/esp32.rom.newlib-reent-funcs.ld
+-- Adding linker script C:/Espressif/frameworks/esp-idf-v5.5.2/components/soc/esp32/ld/esp32.peripherals.ld
+-- Configuring incomplete, errors occurred!

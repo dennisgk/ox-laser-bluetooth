@@ -1,0 +1,76 @@
+Command: C:\Espressif\python_env\idf5.5_py3.13_env\Scripts\python.exe C:\Espressif\frameworks\esp-idf-v5.5.2\tools/idf_monitor.py -p COM3 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 C:\Users\Owner\Desktop\Projects\lasertest2\esp-proto\build\esp_proto.elf C:\Users\Owner\Desktop\Projects\lasertest2\esp-proto\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\python_env\idf5.5_py3.13_env\Scripts\python.exe' 'C:\Espressif\frameworks\esp-idf-v5.5.2\tools\idf.py'
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6384
+load:0x40078000,len:15916
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v5.5.2 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Feb 12 2026 10:07:45[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (29) boot: chip revision: v3.1[0m
+[0;32mI (32) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (35) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (39) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (42) boot: Enabling RNG early entropy source...[0m
+[0;32mI (47) boot: Partition Table:[0m
+[0;32mI (49) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (56) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (62) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (69) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (75) boot: End of partition table[0m
+[0;32mI (79) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=1da28h (121384) map[0m
+[0;32mI (128) esp_image: segment 1: paddr=0002da50 vaddr=3ffbdb60 size=025c8h (  9672) load[0m
+[0;32mI (131) esp_image: segment 2: paddr=00030020 vaddr=400d0020 size=6e970h (452976) map[0m
+[0;32mI (286) esp_image: segment 3: paddr=0009e998 vaddr=3ffc0128 size=02264h (  8804) load[0m
+[0;32mI (290) esp_image: segment 4: paddr=000a0c04 vaddr=40080000 size=17ba4h ( 97188) load[0m
+[0;32mI (328) esp_image: segment 5: paddr=000b87b0 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (340) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (340) boot: Disabling RNG early entropy source...[0m
+[0;32mI (351) cpu_start: Multicore app[0m
+[0;32mI (359) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (359) cpu_start: Pro cpu start user code[0m
+[0;32mI (359) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (361) app_init: Application information:[0m
+[0;32mI (365) app_init: Project name:     esp_proto[0m
+[0;32mI (369) app_init: App version:      1[0m
+[0;32mI (372) app_init: Compile time:     Feb 12 2026 10:06:35[0m
+[0;32mI (377) app_init: ELF file SHA256:  49c029aa4...[0m
+[0;32mI (382) app_init: ESP-IDF:          v5.5.2[0m
+[0;32mI (386) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (389) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (393) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (398) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (404) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (409) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (414) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (419) heap_init: At 3FFC6E80 len 00019180 (100 KiB): DRAM[0m
+[0;32mI (424) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (430) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (435) heap_init: At 40097BA4 len 0000845C (33 KiB): IRAM[0m
+[0;33mW (442) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (453) spi_flash: detected chip: generic[0m
+[0;32mI (457) spi_flash: flash io: dio[0m
+[0;33mW (460) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (473) coexist: coex firmware version: 7260f71[0m
+[0;32mI (477) main_task: Started on CPU0[0m
+[0;32mI (487) main_task: Calling app_main()[0m
+[0;32mI (497) BTDM_INIT: BT controller compile version [f8ae2d0][0m
+[0;32mI (497) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (497) BTDM_INIT: Bluetooth MAC: 8c:4f:00:36:52:76[0m
+[0;32mI (497) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;32mI (897) esp_proto: GATTC registered, interface=3[0m
+[0;32mI (897) main_task: Returned from app_main()[0m
+[0;32mI (897) esp_proto: Started BLE scan[0m
+[0;32mI (6357) esp_proto: Found target device 89:98:1A:04:2B:75[0m
+[0;32mI (6637) esp_proto: Connected to 89:98:1A:04:2B:75[0m
+[0;32mI (7167) esp_proto: Service[0] range 0001..0009[0m
+[0;32mI (7167) esp_proto: Service[1] range 000A..000A[0m
+[0;32mI (7167) esp_proto: Service[2] range 000B..000E[0m
+[0;32mI (7177) esp_proto: Service[3] range 000F..0012[0m
+[0;32mI (7177) esp_proto: Selected service 000B..000E write=0x000D notify=0x000D[0m
+[1;31mE (7187) esp_proto: Descriptor count failed[0m

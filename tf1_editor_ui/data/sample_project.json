@@ -1,0 +1,29 @@
+﻿{
+  "scenes": [
+    {
+      "name": "Scene 1",
+      "frames": [
+        {
+          "time_ms": 120,
+          "patterns": [
+            {
+              "type": "path",
+              "close": true,
+              "color": "#00FFAA",
+              "points": [[80, 80], [160, 80], [120, 160]]
+            },
+            {
+              "type": "text",
+              "text": "TF1",
+              "x": 180,
+              "y": 110,
+              "size": 30,
+              "color": "#FFFFFF",
+              "font": "bold"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
