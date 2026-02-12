@@ -58,8 +58,28 @@ class TF1EditorApp:
         self.root.columnconfigure(1, weight=1)
         self.root.rowconfigure(0, weight=1)
 
-        left = ttk.Frame(self.root, padding=8)
-        left.grid(row=0, column=0, sticky="ns")
+        left_wrap = ttk.Frame(self.root, padding=8)
+        left_wrap.grid(row=0, column=0, sticky="ns")
+        left_wrap.rowconfigure(0, weight=1)
+        left_wrap.columnconfigure(0, weight=1)
+
+        self.left_canvas = tk.Canvas(left_wrap, width=290, highlightthickness=0)
+        self.left_canvas.grid(row=0, column=0, sticky="ns")
+        left_scroll = ttk.Scrollbar(left_wrap, orient="vertical", command=self.left_canvas.yview)
+        left_scroll.grid(row=0, column=1, sticky="ns")
+        self.left_canvas.configure(yscrollcommand=left_scroll.set)
+
+        left = ttk.Frame(self.left_canvas)
+        self.left_canvas_window = self.left_canvas.create_window((0, 0), window=left, anchor="nw")
+        left.bind(
+            "<Configure>",
+            lambda _e: self.left_canvas.configure(scrollregion=self.left_canvas.bbox("all")),
+        )
+        self.left_canvas.bind(
+            "<Configure>",
+            lambda e: self.left_canvas.itemconfigure(self.left_canvas_window, width=e.width),
+        )
+        self.left_canvas.bind_all("<MouseWheel>", self._on_left_mousewheel)
 
         canvas_wrap = ttk.Frame(self.root, padding=8)
         canvas_wrap.grid(row=0, column=1, sticky="nsew")
@@ -136,6 +156,12 @@ class TF1EditorApp:
         self.canvas.bind("<Button-1>", self.on_canvas_press)
         self.canvas.bind("<B1-Motion>", self.on_canvas_drag)
         self.canvas.bind("<ButtonRelease-1>", self.on_canvas_release)
+
+    def _on_left_mousewheel(self, event: tk.Event) -> None:
+        if not self.left_canvas.winfo_exists():
+            return
+        # Windows mouse wheel: delta steps of +/-120.
+        self.left_canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
 
     def world_to_canvas(self, x: float, y: float) -> Tuple[float, float]:
         return x * self.SCALE, y * self.SCALE
