@@ -1,0 +1,860 @@
+Command: C:\Espressif\python_env\idf5.5_py3.13_env\Scripts\python.exe C:\Espressif\frameworks\esp-idf-v5.5.2\tools/idf_monitor.py -p COM7 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 C:\Users\Owner\Desktop\Projects\lasertest2\esp-proto\build\esp_proto.elf C:\Users\Owner\Desktop\Projects\lasertest2\esp-proto\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\python_env\idf5.5_py3.13_env\Scripts\python.exe' 'C:\Espressif\frameworks\esp-idf-v5.5.2\tools\idf.py'
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6384
+load:0x40078000,len:15916
+load:0x40080400,len:3920
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v5.5.2 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Feb 12 2026 10:07:45[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (29) boot: chip revision: v3.1[0m
+[0;32mI (32) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (35) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (39) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (42) boot: Enabling RNG early entropy source...[0m
+[0;32mI (47) boot: Partition Table:[0m
+[0;32mI (49) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (56) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (62) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (69) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (75) boot: End of partition table[0m
+[0;32mI (79) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=3fa18h (260632) map[0m
+[0;32mI (175) esp_image: segment 1: paddr=0004fa40 vaddr=3ffbdb60 size=005d8h (  1496) load[0m
+[0;32mI (176) esp_image: segment 2: paddr=00050020 vaddr=400d0020 size=6ebc0h (453568) map[0m
+[0;32mI (334) esp_image: segment 3: paddr=000bebe8 vaddr=3ffbe138 size=04254h ( 16980) load[0m
+[0;32mI (341) esp_image: segment 4: paddr=000c2e44 vaddr=40080000 size=17ba4h ( 97188) load[0m
+[0;32mI (379) esp_image: segment 5: paddr=000da9f0 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (391) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (391) boot: Disabling RNG early entropy source...[0m
+[0;32mI (401) cpu_start: Multicore app[0m
+[0;32mI (409) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (410) cpu_start: Pro cpu start user code[0m
+[0;32mI (410) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (412) app_init: Application information:[0m
+[0;32mI (415) app_init: Project name:     esp_proto[0m
+[0;32mI (419) app_init: App version:      1[0m
+[0;32mI (423) app_init: Compile time:     Feb 12 2026 10:06:35[0m
+[0;32mI (428) app_init: ELF file SHA256:  da6538190...[0m
+[0;32mI (432) app_init: ESP-IDF:          v5.5.2[0m
+[0;32mI (436) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (440) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (444) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (448) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (454) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (459) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (464) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (469) heap_init: At 3FFC7288 len 00018D78 (99 KiB): DRAM[0m
+[0;32mI (475) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (480) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (485) heap_init: At 40097BA4 len 0000845C (33 KiB): IRAM[0m
+[0;33mW (492) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (504) spi_flash: detected chip: generic[0m
+[0;32mI (507) spi_flash: flash io: dio[0m
+[0;33mW (510) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (523) coexist: coex firmware version: 7260f71[0m
+[0;32mI (527) main_task: Started on CPU0[0m
+[0;32mI (537) main_task: Calling app_main()[0m
+[0;32mI (547) BTDM_INIT: BT controller compile version [f8ae2d0][0m
+[0;32mI (547) BTDM_INIT: Using main XTAL as clock source[0m
+[0;32mI (547) BTDM_INIT: Bluetooth MAC: 8c:4f:00:36:52:76[0m
+[0;32mI (547) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;32mI (947) esp_proto: GATTC registered, interface=3[0m
+[0;32mI (947) main_task: Returned from app_main()[0m
+[0;32mI (957) esp_proto: Started BLE scan[0m
+[0;32mI (5367) esp_proto: Found target device 89:98:1A:04:2B:75[0m
+[0;32mI (5637) esp_proto: Connected to 89:98:1A:04:2B:75[0m
+[0;32mI (6177) esp_proto: Configured MTU=131[0m
+[0;32mI (6177) esp_proto: Service[0] range 0001..0009[0m
+[0;32mI (6177) esp_proto: Service[1] range 000A..000A[0m
+[0;32mI (6177) esp_proto: Service[2] range 000B..000E[0m
+[0;32mI (6177) esp_proto: Service[3] range 000F..0012[0m
+[0;32mI (6187) esp_proto: Selected service 000B..000E write=0x000D notify=0x000D[0m
+[0;32mI (6217) esp_proto: handshake: AA 11 00 5A 10 00 00 00 54 46 31 00 02 1F 02 00[0m
+[0;32mI (6367) esp_proto: notify fragment: 5A 11 00 AA 0A 00 00 00 00 02 18 57[0m
+[0;32mI (6367) esp_proto: Handshake ack: cache_length=512[0m
+[0;32mI (6367) esp_proto: chunk: AA 12 00 5A 00 02 01 00 54 46 31 00 FF FF FF FF FF FF FF FF FF FF FF FF 44 51 46 36 30 00 00 [0m
+[0;32mI (8677) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 01 00 8C F6[0m
+[0;32mI (8677) esp_proto: Chunk 1 acked (500/139010 bytes)[0m
+[0;32mI (8677) esp_proto: chunk: AA 12 00 5A 00 02 02 00 54 46 31 00 14 23 01 00 24 27 01 00 D4 2B 01 00 6C 2C 01 00 A4 2D 01 [0m
+[0;32mI (9077) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 02 00 8C 06[0m
+[0;32mI (9077) esp_proto: Chunk 2 acked (1000/139010 bytes)[0m
+[0;32mI (9077) esp_proto: chunk: AA 12 00 5A 00 02 03 00 54 46 31 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [0m
+[0;32mI (9477) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 03 00 8D 96[0m
+[0;32mI (9477) esp_proto: Chunk 3 acked (1500/139010 bytes)[0m
+[0;32mI (9477) esp_proto: chunk: AA 12 00 5A 00 02 04 00 54 46 31 00 00 00 00 00 00 64 00 00 0A 28 00 0E 00 00 00 00 00 00 00 [0m
+[0;32mI (9897) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 04 00 8F A6[0m
+[0;32mI (9897) esp_proto: Chunk 4 acked (2000/139010 bytes)[0m
+[0;32mI (9897) esp_proto: chunk: AA 12 00 5A 00 02 05 00 54 46 31 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [0m
+[0;32mI (10297) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 05 00 8E 36[0m
+[0;32mI (10297) esp_proto: Chunk 5 acked (2500/139010 bytes)[0m
+[0;32mI (10297) esp_proto: chunk: AA 12 00 5A 00 02 06 00 54 46 31 00 00 00 00 00 64 00 00 0A 28 00 28 00 00 00 00 00 00 00 00 [0m
+[0;32mI (10697) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 06 00 8E C6[0m
+[0;32mI (10697) esp_proto: Chunk 6 acked (3000/139010 bytes)[0m
+[0;32mI (10697) esp_proto: chunk: AA 12 00 5A 00 02 07 00 54 46 31 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [0m
+[0;32mI (11097) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 07 00 8F 56[0m
+[0;32mI (11097) esp_proto: Chunk 7 acked (3500/139010 bytes)[0m
+[0;32mI (11097) esp_proto: chunk: AA 12 00 5A 00 02 08 00 54 46 31 00 00 00 00 64 00 00 0A 28 00 41 00 00 00 00 00 00 00 00 00 [0m
+[0;32mI (11497) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 08 00 8A A6[0m
+[0;32mI (11497) esp_proto: Chunk 8 acked (4000/139010 bytes)[0m
+[0;32mI (11497) esp_proto: chunk: AA 12 00 5A 00 02 09 00 54 46 31 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [0m
+[0;32mI (11897) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 09 00 8B 36[0m
+[0;32mI (11897) esp_proto: Chunk 9 acked (4500/139010 bytes)[0m
+[0;32mI (11897) esp_proto: chunk: AA 12 00 5A 00 02 0A 00 54 46 31 00 00 00 64 00 00 0A 28 00 5B 00 00 00 00 00 00 00 00 00 00 [0m
+[0;32mI (12297) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 0A 00 8B C6[0m
+[0;32mI (12297) esp_proto: Chunk 10 acked (5000/139010 bytes)[0m
+[0;32mI (12297) esp_proto: chunk: AA 12 00 5A 00 02 0B 00 54 46 31 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [0m
+[0;32mI (12717) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 0B 00 8A 56[0m
+[0;32mI (12717) esp_proto: Chunk 11 acked (5500/139010 bytes)[0m
+[0;32mI (12717) esp_proto: chunk: AA 12 00 5A 00 02 0C 00 54 46 31 00 00 64 00 00 0A 28 00 75 00 00 00 00 00 00 00 00 00 00 00 [0m
+[0;32mI (13117) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 0C 00 88 66[0m
+[0;32mI (13117) esp_proto: Chunk 12 acked (6000/139010 bytes)[0m
+[0;32mI (13117) esp_proto: chunk: AA 12 00 5A 00 02 0D 00 54 46 31 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [0m
+[0;32mI (13517) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 0D 00 89 F6[0m
+[0;32mI (13517) esp_proto: Chunk 13 acked (6500/139010 bytes)[0m
+[0;32mI (13517) esp_proto: chunk: AA 12 00 5A 00 02 0E 00 54 46 31 00 64 00 00 0A 28 00 3C 00 00 00 00 00 00 00 00 00 00 00 00 [0m
+[0;32mI (13917) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 0E 00 89 06[0m
+[0;32mI (13917) esp_proto: Chunk 14 acked (7000/139010 bytes)[0m
+[0;32mI (13917) esp_proto: chunk: AA 12 00 5A 00 02 0F 00 54 46 31 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 64 [0m
+[0;32mI (14317) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 0F 00 88 96[0m
+[0;32mI (14317) esp_proto: Chunk 15 acked (7500/139010 bytes)[0m
+[0;32mI (14317) esp_proto: chunk: AA 12 00 5A 00 02 10 00 54 46 31 00 00 00 0A 28 00 98 00 00 00 00 00 00 00 00 00 00 00 00 00 [0m
+[0;32mI (14717) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 10 00 80 A6[0m
+[0;32mI (14717) esp_proto: Chunk 16 acked (8000/139010 bytes)[0m
+[0;32mI (14717) esp_proto: chunk: AA 12 00 5A 00 02 11 00 54 46 31 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 64 00 [0m
+[0;32mI (15117) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 11 00 81 36[0m
+[0;32mI (15117) esp_proto: Chunk 17 acked (8500/139010 bytes)[0m
+[0;32mI (15117) esp_proto: chunk: AA 12 00 5A 00 02 12 00 54 46 31 00 00 0A 28 00 AE 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [0m
+[0;32mI (15517) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 12 00 81 C6[0m
+[0;32mI (15517) esp_proto: Chunk 18 acked (9000/139010 bytes)[0m
+[0;32mI (15517) esp_proto: chunk: AA 12 00 5A 00 02 13 00 54 46 31 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 64 00 00 [0m
+[0;32mI (15917) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 13 00 80 56[0m
+[0;32mI (15917) esp_proto: Chunk 19 acked (9500/139010 bytes)[0m
+[0;32mI (15917) esp_proto: chunk: AA 12 00 5A 00 02 14 00 54 46 31 00 0A 28 00 C6 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [0m
+[0;32mI (16357) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 14 00 82 66[0m
+[0;32mI (16357) esp_proto: Chunk 20 acked (10000/139010 bytes)[0m
+[0;32mI (16357) esp_proto: chunk: AA 12 00 5A 00 02 15 00 54 46 31 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 64 00 00 0A [0m
+[0;32mI (16757) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 15 00 83 F6[0m
+[0;32mI (16757) esp_proto: Chunk 21 acked (10500/139010 bytes)[0m
+[0;32mI (16757) esp_proto: chunk: AA 12 00 5A 00 02 16 00 54 46 31 00 E5 03 88 01 94 E4 9D 01 94 04 9D 01 02 E4 C6 01 42 04 B0 [0m
+[0;32mI (17157) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 16 00 83 06[0m
+[0;32mI (17157) esp_proto: Chunk 22 acked (11000/139010 bytes)[0m
+[0;32mI (17157) esp_proto: chunk: AA 12 00 5A 00 02 17 00 54 46 31 00 49 E8 34 00 49 08 34 00 35 E8 30 00 35 08 30 00 20 E8 2A [0m
+[0;32mI (17597) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 17 00 82 96[0m
+[0;32mI (17597) esp_proto: Chunk 23 acked (11500/139010 bytes)[0m
+[0;32mI (17597) esp_proto: chunk: AA 12 00 5A 00 02 18 00 54 46 31 00 49 08 34 00 FC E7 1D 00 17 08 27 00 17 E8 27 00 3B 08 31 [0m
+[0;32mI (17997) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 18 00 87 66[0m
+[0;32mI (17997) esp_proto: Chunk 24 acked (12000/139010 bytes)[0m
+[0;32mI (17997) esp_proto: chunk: AA 12 00 5A 00 02 19 00 54 46 31 00 02 E4 C6 01 42 04 B0 01 A8 E3 A1 01 02 04 C6 01 34 E3 B6 [0m
+[0;32mI (18397) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 19 00 86 F6[0m
+[0;32mI (18397) esp_proto: Chunk 25 acked (12500/139010 bytes)[0m
+[0;32mI (18397) esp_proto: chunk: AA 12 00 5A 00 02 1A 00 54 46 31 00 15 07 20 00 F1 E7 1D 00 FC 07 1D 00 49 E8 34 00 49 08 34 [0m
+[0;32mI (18797) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 1A 00 86 06[0m
+[0;32mI (18797) esp_proto: Chunk 26 acked (13000/139010 bytes)[0m
+[0;32mI (18797) esp_proto: chunk: AA 12 00 5A 00 02 1B 00 54 46 31 00 F1 E7 1D 00 FC 07 1D 00 49 E8 34 00 49 08 34 00 20 E8 2A [0m
+[0;32mI (19197) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 1B 00 87 96[0m
+[0;32mI (19197) esp_proto: Chunk 27 acked (13500/139010 bytes)[0m
+[0;32mI (19197) esp_proto: chunk: AA 12 00 5A 00 02 1C 00 54 46 31 00 A2 02 F0 00 90 E1 B4 00 EC 01 FC 00 FB E1 D8 00 15 03 95 [0m
+[0;32mI (19597) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 1C 00 85 A6[0m
+[0;32mI (19597) esp_proto: Chunk 28 acked (14000/139010 bytes)[0m
+[0;32mI (19597) esp_proto: chunk: AA 12 00 5A 00 02 1D 00 54 46 31 00 22 E8 2A 00 22 08 2A 00 22 E8 2A 00 22 08 2A 00 12 E8 25 [0m
+[0;32mI (20017) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 1D 00 84 36[0m
+[0;32mI (20017) esp_proto: Chunk 29 acked (14500/139010 bytes)[0m
+[0;32mI (20017) esp_proto: chunk: AA 12 00 5A 00 02 1E 00 54 46 31 00 22 08 2A 00 22 E8 2A 00 22 08 2A 00 12 E8 25 00 12 08 25 [0m
+[0;32mI (20417) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 1E 00 84 C6[0m
+[0;32mI (20417) esp_proto: Chunk 30 acked (15000/139010 bytes)[0m
+[0;32mI (20417) esp_proto: chunk: AA 12 00 5A 00 02 1F 00 54 46 31 00 D4 E1 8E 00 4C 04 6B 00 05 E5 5A 00 A7 04 62 00 17 E4 39 [0m
+[0;32mI (20817) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 1F 00 85 56[0m
+[0;32mI (20817) esp_proto: Chunk 31 acked (15500/139010 bytes)[0m
+[0;32mI (20817) esp_proto: chunk: AA 12 00 5A 00 02 20 00 54 46 31 00 49 08 34 00 FC E7 1D 00 17 08 27 00 17 E8 27 00 FC 07 1D [0m
+[0;32mI (21237) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 20 00 94 A6[0m
+[0;32mI (21237) esp_proto: Chunk 32 acked (16000/139010 bytes)[0m
+[0;32mI (21237) esp_proto: chunk: AA 12 00 5A 00 02 21 00 54 46 31 00 0B E8 23 00 0B 08 23 00 FC E7 1D 00 FC 07 1D 00 FC E7 1D [0m
+[0;32mI (21637) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 21 00 95 36[0m
+[0;32mI (21637) esp_proto: Chunk 33 acked (16500/139010 bytes)[0m
+[0;32mI (21637) esp_proto: chunk: AA 12 00 5A 00 02 22 00 54 46 31 00 42 04 B0 01 A8 E3 A1 01 02 04 C6 01 34 E3 B6 01 F3 02 4E [0m
+[0;32mI (22057) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 22 00 95 C6[0m
+[0;32mI (22057) esp_proto: Chunk 34 acked (17000/139010 bytes)[0m
+[0;32mI (22057) esp_proto: chunk: AA 12 00 5A 00 02 23 00 54 46 31 00 FC E7 1D 00 FC 07 1D 00 49 E8 34 00 49 08 34 00 FC E7 1D [0m
+[0;32mI (22457) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 23 00 94 56[0m
+[0;32mI (22457) esp_proto: Chunk 35 acked (17500/139010 bytes)[0m
+[0;32mI (22457) esp_proto: chunk: AA 12 00 5A 00 02 24 00 54 46 31 00 90 01 4C 01 AA E2 1E 01 68 01 14 01 A2 E2 F0 00 A2 02 F0 [0m
+[0;32mI (22857) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 24 00 96 66[0m
+[0;32mI (22857) esp_proto: Chunk 36 acked (18000/139010 bytes)[0m
+[0;32mI (22857) esp_proto: chunk: AA 12 00 5A 00 02 25 00 54 46 31 00 49 E8 34 00 3F 08 32 00 3F E8 32 00 3F 08 32 00 1D E8 29 [0m
+[0;32mI (23257) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 25 00 97 F6[0m
+[0;32mI (23257) esp_proto: Chunk 37 acked (18500/139010 bytes)[0m
+[0;32mI (23257) esp_proto: chunk: AA 12 00 5A 00 02 26 00 54 46 31 00 A2 05 D7 01 1A E6 DA 01 96 05 B0 01 21 E5 D3 01 D5 04 A3 [0m
+[0;32mI (23697) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 26 00 97 06[0m
+[0;32mI (23697) esp_proto: Chunk 38 acked (19000/139010 bytes)[0m
+[0;32mI (23697) esp_proto: chunk: AA 12 00 5A 00 02 27 00 54 46 31 00 17 E8 27 00 FC 07 1D 00 49 E8 34 00 49 08 34 00 20 E8 2A [0m
+[0;32mI (24097) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 27 00 96 96[0m
+[0;32mI (24097) esp_proto: Chunk 39 acked (19500/139010 bytes)[0m
+[0;32mI (24097) esp_proto: chunk: AA 12 00 5A 00 02 28 00 54 46 31 00 49 08 34 00 35 E8 30 00 35 08 30 00 22 E8 2A 00 22 08 2A [0m
+[0;32mI (24497) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 28 00 93 66[0m
+[0;32mI (24497) esp_proto: Chunk 40 acked (20000/139010 bytes)[0m
+[0;32mI (24497) esp_proto: chunk: AA 12 00 5A 00 02 29 00 54 46 31 00 A8 E3 A1 01 02 04 C6 01 34 E3 B6 01 F3 02 4E 01 F2 E1 7D [0m
+[0;32mI (24897) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 29 00 92 F6[0m
+[0;32mI (24897) esp_proto: Chunk 41 acked (20500/139010 bytes)[0m
+[0;32mI (24897) esp_proto: chunk: AA 12 00 5A 00 02 2A 00 54 46 31 00 0B 08 23 00 FC E7 1D 00 FC 07 1D 00 FC E7 1D 00 49 08 34 [0m
+[0;32mI (25297) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 2A 00 92 06[0m
+[0;32mI (25297) esp_proto: Chunk 42 acked (21000/139010 bytes)[0m
+[0;32mI (25297) esp_proto: chunk: AA 12 00 5A 00 02 2B 00 54 46 31 00 FB E2 A5 00 FB 02 A5 00 C0 E2 85 00 C0 02 85 00 2A E2 7B [0m
+[0;32mI (25717) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 2B 00 93 96[0m
+[0;32mI (25717) esp_proto: Chunk 43 acked (21500/139010 bytes)[0m
+[0;32mI (25717) esp_proto: chunk: AA 12 00 5A 00 02 2C 00 54 46 31 00 49 08 34 00 1D E8 29 00 49 08 34 00 1D E8 29 00 1D 08 29 [0m
+[0;32mI (26117) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 2C 00 91 A6[0m
+[0;32mI (26117) esp_proto: Chunk 44 acked (22000/139010 bytes)[0m
+[0;32mI (26117) esp_proto: chunk: AA 12 00 5A 00 02 2D 00 54 46 31 00 7C E2 90 00 AE 03 3F 00 4C E4 6B 00 4C 04 6B 00 5B E4 50 [0m
+[0;32mI (26517) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 2D 00 90 36[0m
+[0;32mI (26517) esp_proto: Chunk 45 acked (22500/139010 bytes)[0m
+[0;32mI (26517) esp_proto: chunk: AA 12 00 5A 00 02 2E 00 54 46 31 00 68 01 14 01 A0 E2 0B 01 A0 02 0B 01 90 E1 B4 00 90 01 B4 [0m
+[0;32mI (26917) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 2E 00 90 C6[0m
+[0;32mI (26917) esp_proto: Chunk 46 acked (23000/139010 bytes)[0m
+[0;32mI (26917) esp_proto: chunk: AA 12 00 5A 00 02 2F 00 54 46 31 00 42 E2 87 01 F3 02 4E 01 F2 E1 7D 01 AA 02 1E 01 63 E2 62 [0m
+[0;32mI (27317) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 2F 00 91 56[0m
+[0;32mI (27317) esp_proto: Chunk 47 acked (23500/139010 bytes)[0m
+[0;32mI (27317) esp_proto: chunk: AA 12 00 5A 00 02 30 00 54 46 31 00 1D 08 29 00 02 E8 1F 00 02 08 1F 00 02 E8 1F 00 02 08 1F [0m
+[0;32mI (27717) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 30 00 99 66[0m
+[0;32mI (27717) esp_proto: Chunk 48 acked (24000/139010 bytes)[0m
+[0;32mI (27717) esp_proto: chunk: AA 12 00 5A 00 02 31 00 54 46 31 00 FC E7 1D 00 FC 07 1D 00 08 E8 22 00 08 08 22 00 49 E8 34 [0m
+[0;32mI (28117) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 31 00 98 F6[0m
+[0;32mI (28117) esp_proto: Chunk 49 acked (24500/139010 bytes)[0m
+[0;32mI (28117) esp_proto: chunk: AA 12 00 5A 00 02 32 00 54 46 31 00 02 08 1F 00 02 E8 1F 00 02 08 1F 00 1D E8 29 00 1D 08 29 [0m
+[0;32mI (28517) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 32 00 98 06[0m
+[0;32mI (28517) esp_proto: Chunk 50 acked (25000/139010 bytes)[0m
+[0;32mI (28517) esp_proto: chunk: AA 12 00 5A 00 02 33 00 54 46 31 00 42 E2 87 01 F3 02 4E 01 F2 E1 7D 01 AA 02 1E 01 63 E2 62 [0m
+[0;32mI (28917) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 33 00 99 96[0m
+[0;32mI (28917) esp_proto: Chunk 51 acked (25500/139010 bytes)[0m
+[0;32mI (28917) esp_proto: chunk: AA 12 00 5A 00 02 34 00 54 46 31 00 49 08 34 00 49 E8 34 00 49 08 34 00 35 E8 30 00 35 08 30 [0m
+[0;32mI (29317) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 34 00 9B A6[0m
+[0;32mI (29317) esp_proto: Chunk 52 acked (26000/139010 bytes)[0m
+[0;32mI (29317) esp_proto: chunk: AA 12 00 5A 00 02 35 00 54 46 31 00 63 E2 62 01 7A 01 36 01 63 E2 62 01 A0 02 0B 01 B6 E2 D6 [0m
+[0;32mI (29717) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 35 00 9A 36[0m
+[0;32mI (29717) esp_proto: Chunk 53 acked (26500/139010 bytes)[0m
+[0;32mI (29717) esp_proto: chunk: AA 12 00 5A 00 02 36 00 54 46 31 00 35 08 30 00 20 E8 2A 00 20 08 2A 00 1A E8 28 00 1A 08 28 [0m
+[0;32mI (30137) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 36 00 9A C6[0m
+[0;32mI (30137) esp_proto: Chunk 54 acked (27000/139010 bytes)[0m
+[0;32mI (30137) esp_proto: chunk: AA 12 00 5A 00 02 37 00 54 46 31 00 35 E8 30 00 35 08 30 00 20 E8 2A 00 20 08 2A 00 1A E8 28 [0m
+[0;32mI (30537) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 37 00 9B 56[0m
+[0;32mI (30537) esp_proto: Chunk 55 acked (27500/139010 bytes)[0m
+[0;32mI (30537) esp_proto: chunk: AA 12 00 5A 00 02 38 00 54 46 31 00 F2 05 42 00 A5 E5 3E 00 A5 05 3E 00 0B E5 46 00 0B 05 46 [0m
+[0;32mI (30957) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 38 00 9E A6[0m
+[0;32mI (30957) esp_proto: Chunk 56 acked (28000/139010 bytes)[0m
+[0;32mI (30957) esp_proto: chunk: AA 12 00 5A 00 02 39 00 54 46 31 00 35 E5 AA 01 35 05 AA 01 4B E4 CA 01 18 05 C1 01 B1 E4 BB [0m
+[0;32mI (31357) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 39 00 9F 36[0m
+[0;32mI (31357) esp_proto: Chunk 57 acked (28500/139010 bytes)[0m
+[0;32mI (31357) esp_proto: chunk: AA 12 00 5A 00 02 3A 00 54 46 31 00 22 08 2A 00 FC E7 1D 00 A7 06 BE 01 DC E5 B4 01 41 06 BA [0m
+[0;32mI (31757) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 3A 00 9F C6[0m
+[0;32mI (31757) esp_proto: Chunk 58 acked (29000/139010 bytes)[0m
+[0;32mI (31757) esp_proto: chunk: AA 12 00 5A 00 02 3B 00 54 46 31 00 49 E8 34 00 49 08 34 00 35 E8 30 00 35 08 30 00 22 E8 2A [0m
+[0;32mI (32177) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 3B 00 9E 56[0m
+[0;32mI (32177) esp_proto: Chunk 59 acked (29500/139010 bytes)[0m
+[0;32mI (32177) esp_proto: chunk: AA 12 00 5A 00 02 3C 00 54 46 31 00 35 05 AA 01 4B E4 CA 01 18 05 C1 01 B1 E4 BB 01 94 04 9D [0m
+[0;32mI (32597) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 3C 00 9C 66[0m
+[0;32mI (32597) esp_proto: Chunk 60 acked (30000/139010 bytes)[0m
+[0;32mI (32597) esp_proto: chunk: AA 12 00 5A 00 02 3D 00 54 46 31 00 7A E1 36 01 B6 02 D6 00 A0 E2 0B 01 A0 02 0B 01 68 E1 14 [0m
+[0;32mI (32997) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 3D 00 9D F6[0m
+[0;32mI (32997) esp_proto: Chunk 61 acked (30500/139010 bytes)[0m
+[0;32mI (32997) esp_proto: chunk: AA 12 00 5A 00 02 3E 00 54 46 31 00 84 03 B9 01 02 E4 C6 01 F2 01 7D 01 F3 E2 4E 01 F3 02 4E [0m
+[0;32mI (33397) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 3E 00 9D 06[0m
+[0;32mI (33397) esp_proto: Chunk 62 acked (31000/139010 bytes)[0m
+[0;32mI (33397) esp_proto: chunk: AA 12 00 5A 00 02 3F 00 54 46 31 00 FC E7 1D 00 FC 07 1D 00 49 E8 34 00 49 08 34 00 49 E8 34 [0m
+[0;32mI (33817) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 3F 00 9C 96[0m
+[0;32mI (33817) esp_proto: Chunk 63 acked (31500/139010 bytes)[0m
+[0;32mI (33817) esp_proto: chunk: AA 12 00 5A 00 02 40 00 54 46 31 00 8B 02 DE 00 20 E2 C9 00 20 02 C9 00 9E E1 CA 00 9E 01 CA [0m
+[0;32mI (34237) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 40 00 BC A6[0m
+[0;32mI (34237) esp_proto: Chunk 64 acked (32000/139010 bytes)[0m
+[0;32mI (34237) esp_proto: chunk: AA 12 00 5A 00 02 41 00 54 46 31 00 55 E6 46 00 55 06 46 00 EE E5 27 00 1B 06 37 00 C4 E6 31 [0m
+[0;32mI (34657) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 41 00 BD 36[0m
+[0;32mI (34657) esp_proto: Chunk 65 acked (32500/139010 bytes)[0m
+[0;32mI (34657) esp_proto: chunk: AA 12 00 5A 00 02 42 00 54 46 31 00 48 05 55 00 6D E5 3F 00 6D 05 3F 00 0E E6 49 00 0E 06 49 [0m
+[0;32mI (35057) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 42 00 BD C6[0m
+[0;32mI (35057) esp_proto: Chunk 66 acked (33000/139010 bytes)[0m
+[0;32mI (35057) esp_proto: chunk: AA 12 00 5A 00 02 43 00 54 46 31 00 94 E4 9D 01 94 04 9D 01 02 E4 C6 01 42 04 B0 01 A8 E3 A1 [0m
+[0;32mI (35457) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 43 00 BC 56[0m
+[0;32mI (35457) esp_proto: Chunk 67 acked (33500/139010 bytes)[0m
+[0;32mI (35457) esp_proto: chunk: AA 12 00 5A 00 02 44 00 54 46 31 00 FC 07 1D 00 FC E7 1D 00 49 08 34 00 08 E8 22 00 08 08 22 [0m
+[0;32mI (35877) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 44 00 BE 66[0m
+[0;32mI (35877) esp_proto: Chunk 68 acked (34000/139010 bytes)[0m
+[0;32mI (35877) esp_proto: chunk: AA 12 00 5A 00 02 45 00 54 46 31 00 02 E8 1F 00 3F 08 32 00 3F E8 32 00 3F 08 32 00 1D E8 29 [0m
+[0;32mI (36277) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 45 00 BF F6[0m
+[0;32mI (36277) esp_proto: Chunk 69 acked (34500/139010 bytes)[0m
+[0;32mI (36277) esp_proto: chunk: AA 12 00 5A 00 02 46 00 54 46 31 00 02 04 C6 01 34 E3 B6 01 F3 02 4E 01 AA E2 1E 01 C7 02 37 [0m
+[0;32mI (36697) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 46 00 BF 06[0m
+[0;32mI (36697) esp_proto: Chunk 70 acked (35000/139010 bytes)[0m
+[0;32mI (36697) esp_proto: chunk: AA 12 00 5A 00 02 47 00 54 46 31 00 FC E7 1D 00 FC 07 1D 00 FC E7 1D 00 FC 07 1D 00 08 E8 22 [0m
+[0;32mI (37097) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 47 00 BE 96[0m
+[0;32mI (37097) esp_proto: Chunk 71 acked (35500/139010 bytes)[0m
+[0;32mI (37097) esp_proto: chunk: AA 12 00 5A 00 02 48 00 54 46 31 00 42 04 B0 01 A8 E3 A1 01 02 04 C6 01 34 E3 B6 01 F3 02 4E [0m
+[0;32mI (37517) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 48 00 BB 66[0m
+[0;32mI (37517) esp_proto: Chunk 72 acked (36000/139010 bytes)[0m
+[0;32mI (37517) esp_proto: chunk: AA 12 00 5A 00 02 49 00 54 46 31 00 08 E8 22 00 08 08 22 00 FC E7 1D 00 FC 07 1D 00 FC E7 1D [0m
+[0;32mI (37917) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 49 00 BA F6[0m
+[0;32mI (37917) esp_proto: Chunk 73 acked (36500/139010 bytes)[0m
+[0;32mI (37917) esp_proto: chunk: AA 12 00 5A 00 02 4A 00 54 46 31 00 35 08 30 00 22 E8 2A 00 22 08 2A 00 22 E8 2A 00 22 08 2A [0m
+[0;32mI (38357) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 4A 00 BA 06[0m
+[0;32mI (38357) esp_proto: Chunk 74 acked (37000/139010 bytes)[0m
+[0;32mI (38357) esp_proto: chunk: AA 12 00 5A 00 02 4B 00 54 46 31 00 5C E3 46 00 F7 02 79 00 A8 E3 5F 00 05 05 5A 00 4C E4 6B [0m
+[0;32mI (38757) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 4B 00 BB 96[0m
+[0;32mI (38757) esp_proto: Chunk 75 acked (37500/139010 bytes)[0m
+[0;32mI (38757) esp_proto: chunk: AA 12 00 5A 00 02 4C 00 54 46 31 00 6F 06 CC 01 22 E6 D7 01 22 06 D7 01 AD E5 D7 01 AD 05 D7 [0m
+[0;32mI (39157) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 4C 00 B9 A6[0m
+[0;32mI (39157) esp_proto: Chunk 76 acked (38000/139010 bytes)[0m
+[0;32mI (39157) esp_proto: chunk: AA 12 00 5A 00 02 4D 00 54 46 31 00 FC E7 1D 00 17 08 27 00 17 E8 27 00 FC 07 1D 00 49 E8 34 [0m
+[0;32mI (39577) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 4D 00 B8 36[0m
+[0;32mI (39577) esp_proto: Chunk 77 acked (38500/139010 bytes)[0m
+[0;32mI (39577) esp_proto: chunk: AA 12 00 5A 00 02 4E 00 54 46 31 00 FC 07 1D 00 FC E7 1D 00 3B 08 31 00 49 E8 34 00 49 08 34 [0m
+[0;32mI (39977) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 4E 00 B8 C6[0m
+[0;32mI (39977) esp_proto: Chunk 78 acked (39000/139010 bytes)[0m
+[0;32mI (39977) esp_proto: chunk: AA 12 00 5A 00 02 4F 00 54 46 31 00 1B E4 BC 01 1B 04 BC 01 CE E3 C3 01 CE 03 C3 01 5C E3 BA [0m
+[0;32mI (40377) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 4F 00 B9 56[0m
+[0;32mI (40377) esp_proto: Chunk 79 acked (39500/139010 bytes)[0m
+[0;32mI (40377) esp_proto: chunk: AA 12 00 5A 00 02 50 00 54 46 31 00 22 08 2A 00 FC E7 1D 00 49 08 34 00 49 E8 34 00 49 08 34 [0m
+[0;32mI (40777) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 50 00 B1 66[0m
+[0;32mI (40777) esp_proto: Chunk 80 acked (40000/139010 bytes)[0m
+[0;32mI (40777) esp_proto: chunk: AA 12 00 5A 00 02 51 00 54 46 31 00 39 E3 65 01 39 03 65 01 86 E3 77 01 86 03 77 01 76 E3 86 [0m
+[0;32mI (41177) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 51 00 B0 F6[0m
+[0;32mI (41177) esp_proto: Chunk 81 acked (40500/139010 bytes)[0m
+[0;32mI (41177) esp_proto: chunk: AA 12 00 5A 00 02 52 00 54 46 31 00 49 08 34 00 35 E8 30 00 35 08 30 00 20 E8 2A 00 20 08 2A [0m
+[0;32mI (41577) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 52 00 B0 06[0m
+[0;32mI (41577) esp_proto: Chunk 82 acked (41000/139010 bytes)[0m
+[0;32mI (41577) esp_proto: chunk: AA 12 00 5A 00 02 53 00 54 46 31 00 70 E6 BF 01 70 06 BF 01 6F E6 CC 01 6F 06 CC 01 22 E6 D7 [0m
+[0;32mI (41997) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 53 00 B1 96[0m
+[0;32mI (41997) esp_proto: Chunk 83 acked (41500/139010 bytes)[0m
+[0;32mI (41997) esp_proto: chunk: AA 12 00 5A 00 02 54 00 54 46 31 00 FC 07 1D 00 49 E8 34 00 49 08 34 00 FC E7 1D 00 17 08 27 [0m
+[0;32mI (42397) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 54 00 B3 A6[0m
+[0;32mI (42397) esp_proto: Chunk 84 acked (42000/139010 bytes)[0m
+[0;32mI (42397) esp_proto: chunk: AA 12 00 5A 00 02 55 00 54 46 31 00 17 E8 27 00 FC 07 1D 00 49 E8 34 00 49 08 34 00 49 E8 34 [0m
+[0;32mI (42837) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 55 00 B2 36[0m
+[0;32mI (42837) esp_proto: Chunk 85 acked (42500/139010 bytes)[0m
+[0;32mI (42837) esp_proto: chunk: AA 12 00 5A 00 02 56 00 54 46 31 00 25 06 25 00 85 E6 33 00 85 06 33 00 92 E6 23 00 92 06 23 [0m
+[0;32mI (43277) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 56 00 B2 C6[0m
+[0;32mI (43277) esp_proto: Chunk 86 acked (43000/139010 bytes)[0m
+[0;32mI (43277) esp_proto: chunk: AA 12 00 5A 00 02 57 00 54 46 31 00 49 E8 34 00 49 08 34 00 3F E8 32 00 3F 08 32 00 1D E8 29 [0m
+[0;32mI (43697) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 57 00 B3 56[0m
+[0;32mI (43697) esp_proto: Chunk 87 acked (43500/139010 bytes)[0m
+[0;32mI (43697) esp_proto: chunk: AA 12 00 5A 00 02 58 00 54 46 31 00 08 08 22 00 FC E7 1D 00 FC 07 1D 00 FC E7 1D 00 FC 07 1D [0m
+[0;32mI (44117) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 58 00 B6 A6[0m
+[0;32mI (44117) esp_proto: Chunk 88 acked (44000/139010 bytes)[0m
+[0;32mI (44117) esp_proto: chunk: AA 12 00 5A 00 02 59 00 54 46 31 00 1A E3 5C 01 1A 03 5C 01 2B E2 8E 01 F3 02 4E 01 AA E2 1E [0m
+[0;32mI (44517) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 59 00 B7 36[0m
+[0;32mI (44517) esp_proto: Chunk 89 acked (44500/139010 bytes)[0m
+[0;32mI (44517) esp_proto: chunk: AA 12 00 5A 00 02 5A 00 54 46 31 00 DA 06 29 00 92 E6 23 00 92 06 23 00 1A E6 26 00 FC 07 1D [0m
+[0;32mI (44937) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 5A 00 B7 C6[0m
+[0;32mI (44937) esp_proto: Chunk 90 acked (45000/139010 bytes)[0m
+[0;32mI (44937) esp_proto: chunk: AA 12 00 5A 00 02 5B 00 54 46 31 00 4B E4 CA 01 4B 04 CA 01 D5 E4 A3 01 94 04 9D 01 02 E4 C6 [0m
+[0;32mI (45337) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 5B 00 B6 56[0m
+[0;32mI (45337) esp_proto: Chunk 91 acked (45500/139010 bytes)[0m
+[0;32mI (45337) esp_proto: chunk: AA 12 00 5A 00 02 5C 00 54 46 31 00 F2 05 42 00 A5 E5 3E 00 A5 05 3E 00 0B E5 46 00 0B 05 46 [0m
+[0;32mI (45757) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 5C 00 B4 66[0m
+[0;32mI (45757) esp_proto: Chunk 92 acked (46000/139010 bytes)[0m
+[0;32mI (45757) esp_proto: chunk: AA 12 00 5A 00 02 5D 00 54 46 31 00 0B E5 46 00 0B 05 46 00 A2 E5 29 00 23 07 3D 00 55 E6 46 [0m
+[0;32mI (46157) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 5D 00 B5 F6[0m
+[0;32mI (46157) esp_proto: Chunk 93 acked (46500/139010 bytes)[0m
+[0;32mI (46157) esp_proto: chunk: AA 12 00 5A 00 02 5E 00 54 46 31 00 21 05 D3 01 96 E5 B0 01 96 05 B0 01 4B E4 CA 01 4B 04 CA [0m
+[0;32mI (46577) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 5E 00 B5 06[0m
+[0;32mI (46577) esp_proto: Chunk 94 acked (47000/139010 bytes)[0m
+[0;32mI (46577) esp_proto: chunk: AA 12 00 5A 00 02 5F 00 54 46 31 00 8B E2 DE 00 8B 02 DE 00 20 E2 C9 00 20 02 C9 00 9E E1 CA [0m
+[0;32mI (47017) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 5F 00 B4 96[0m
+[0;32mI (47017) esp_proto: Chunk 95 acked (47500/139010 bytes)[0m
+[0;32mI (47017) esp_proto: chunk: AA 12 00 5A 00 02 60 00 54 46 31 00 87 01 00 01 04 E2 0E 01 04 02 0E 01 7D E2 00 01 CE 02 C4 [0m
+[0;32mI (47417) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 60 00 A5 66[0m
+[0;32mI (47417) esp_proto: Chunk 96 acked (48000/139010 bytes)[0m
+[0;32mI (47417) esp_proto: chunk: AA 12 00 5A 00 02 61 00 54 46 31 00 8B E2 DE 00 8B 02 DE 00 20 E2 C9 00 20 02 C9 00 9E E1 CA [0m
+[0;32mI (47837) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 61 00 A4 F6[0m
+[0;32mI (47837) esp_proto: Chunk 97 acked (48500/139010 bytes)[0m
+[0;32mI (47837) esp_proto: chunk: AA 12 00 5A 00 02 62 00 54 46 31 00 FC 07 1D 00 06 E8 21 00 06 08 21 00 17 E8 27 00 17 08 27 [0m
+[0;32mI (48237) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 62 00 A4 06[0m
+[0;32mI (48237) esp_proto: Chunk 98 acked (49000/139010 bytes)[0m
+[0;32mI (48237) esp_proto: chunk: AA 12 00 5A 00 02 63 00 54 46 31 00 FC E7 1D 00 49 08 34 00 49 E8 34 00 49 08 34 00 FC E7 1D [0m
+[0;32mI (48637) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 63 00 A5 96[0m
+[0;32mI (48637) esp_proto: Chunk 99 acked (49500/139010 bytes)[0m
+[0;32mI (48637) esp_proto: chunk: AA 12 00 5A 00 02 64 00 54 46 31 00 A7 06 BE 01 06 E6 C9 01 DC 05 B4 01 06 E6 C9 01 06 06 C9 [0m
+[0;32mI (49057) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 64 00 A7 A6[0m
+[0;32mI (49057) esp_proto: Chunk 100 acked (50000/139010 bytes)[0m
+[0;32mI (49057) esp_proto: chunk: AA 12 00 5A 00 02 65 00 54 46 31 00 97 E4 3C 00 97 04 3C 00 05 E5 5A 00 13 07 3A 00 EF E6 3F [0m
+[0;32mI (49477) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 65 00 A6 36[0m
+[0;32mI (49477) esp_proto: Chunk 101 acked (50500/139010 bytes)[0m
+[0;32mI (49477) esp_proto: chunk: AA 12 00 5A 00 02 66 00 54 46 31 00 3A 06 3F 00 49 E6 36 00 49 06 36 00 C1 E6 30 00 C1 06 30 [0m
+[0;32mI (49877) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 66 00 A6 C6[0m
+[0;32mI (49877) esp_proto: Chunk 102 acked (51000/139010 bytes)[0m
+[0;32mI (49877) esp_proto: chunk: AA 12 00 5A 00 02 67 00 54 46 31 00 05 E5 5A 00 13 07 3A 00 EF E6 3F 00 EF 06 3F 00 88 E6 43 [0m
+[0;32mI (50317) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 67 00 A7 56[0m
+[0;32mI (50317) esp_proto: Chunk 103 acked (51500/139010 bytes)[0m
+[0;32mI (50317) esp_proto: chunk: AA 12 00 5A 00 02 68 00 54 46 31 00 6E 03 84 00 CF E3 74 00 CF 03 74 00 A8 E3 5F 00 A8 03 5F [0m
+[0;32mI (50717) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 68 00 A2 A6[0m
+[0;32mI (50717) esp_proto: Chunk 104 acked (52000/139010 bytes)[0m
+[0;32mI (50717) esp_proto: chunk: AA 12 00 5A 00 02 69 00 54 46 31 00 FC E7 1D 00 FC 07 1D 00 06 E8 21 00 06 08 21 00 17 E8 27 [0m
+[0;32mI (51177) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 69 00 A3 36[0m
+[0;32mI (51177) esp_proto: Chunk 105 acked (52500/139010 bytes)[0m
+[0;32mI (51177) esp_proto: chunk: AA 12 00 5A 00 02 6A 00 54 46 31 00 1D 08 29 00 3F E8 32 00 49 08 34 00 FC E7 1D 00 49 08 34 [0m
+[0;32mI (51597) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 6A 00 A3 C6[0m
+[0;32mI (51597) esp_proto: Chunk 106 acked (53000/139010 bytes)[0m
+[0;32mI (51597) esp_proto: chunk: AA 12 00 5A 00 02 6B 00 54 46 31 00 88 E4 B5 01 88 04 B5 01 81 E4 C8 01 81 04 C8 01 00 E5 CD [0m
+[0;32mI (51997) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 6B 00 A2 56[0m
+[0;32mI (51997) esp_proto: Chunk 107 acked (53500/139010 bytes)[0m
+[0;32mI (51997) esp_proto: chunk: AA 12 00 5A 00 02 6C 00 54 46 31 00 AD 04 5D 00 BA E4 48 00 BA 04 48 00 33 E4 3B 00 33 04 3B [0m
+[0;32mI (52397) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 6C 00 A0 66[0m
+[0;32mI (52397) esp_proto: Chunk 108 acked (54000/139010 bytes)[0m
+[0;32mI (52397) esp_proto: chunk: AA 12 00 5A 00 02 6D 00 54 46 31 00 AE E3 3F 00 4C 04 6B 00 AD E4 5D 00 AD 04 5D 00 BA E4 48 [0m
+[0;32mI (52797) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 6D 00 A1 F6[0m
+[0;32mI (52797) esp_proto: Chunk 109 acked (54500/139010 bytes)[0m
+[0;32mI (52797) esp_proto: chunk: AA 12 00 5A 00 02 6E 00 54 46 31 00 F3 02 4E 01 AA E2 1E 01 C7 02 37 01 AC E1 5F 01 F2 01 7D [0m
+[0;32mI (53197) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 6E 00 A1 06[0m
+[0;32mI (53197) esp_proto: Chunk 110 acked (55000/139010 bytes)[0m
+[0;32mI (53197) esp_proto: chunk: AA 12 00 5A 00 02 6F 00 54 46 31 00 1D E8 29 00 1D 08 29 00 3F E8 32 00 FC 07 1D 00 49 E8 34 [0m
+[0;32mI (53597) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 6F 00 A0 96[0m
+[0;32mI (53597) esp_proto: Chunk 111 acked (55500/139010 bytes)[0m
+[0;32mI (53597) esp_proto: chunk: AA 12 00 5A 00 02 70 00 54 46 31 00 49 08 34 00 FC E7 1D 00 FC 07 1D 00 FC E7 1D 00 49 08 34 [0m
+[0;32mI (53997) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 70 00 A8 A6[0m
+[0;32mI (53997) esp_proto: Chunk 112 acked (56000/139010 bytes)[0m
+[0;32mI (53997) esp_proto: chunk: AA 12 00 5A 00 02 71 00 54 46 31 00 1A E3 A4 00 1A 03 A4 00 C6 E2 B6 00 C6 02 B6 00 3F E2 B4 [0m
+[0;32mI (54397) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 71 00 A9 36[0m
+[0;32mI (54397) esp_proto: Chunk 113 acked (56500/139010 bytes)[0m
+[0;32mI (54397) esp_proto: chunk: AA 12 00 5A 00 02 72 00 54 46 31 00 49 08 34 00 FC E7 1D 00 49 08 34 00 FC E7 1D 00 1D 08 29 [0m
+[0;32mI (54797) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 72 00 A9 C6[0m
+[0;32mI (54797) esp_proto: Chunk 114 acked (57000/139010 bytes)[0m
+[0;32mI (54797) esp_proto: chunk: AA 12 00 5A 00 02 73 00 54 46 31 00 B5 E3 9E 01 B5 03 9E 01 4D E4 AD 01 4D 04 AD 01 34 E3 B6 [0m
+[0;32mI (55197) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 73 00 A8 56[0m
+[0;32mI (55197) esp_proto: Chunk 115 acked (57500/139010 bytes)[0m
+[0;32mI (55197) esp_proto: chunk: AA 12 00 5A 00 02 74 00 54 46 31 00 FC 07 1D 00 FC E7 1D 00 3F 08 32 00 3F E8 32 00 3F 08 32 [0m
+[0;32mI (55617) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 74 00 AA 66[0m
+[0;32mI (55617) esp_proto: Chunk 116 acked (58000/139010 bytes)[0m
+[0;32mI (55617) esp_proto: chunk: AA 12 00 5A 00 02 75 00 54 46 31 00 FC E7 1D 00 49 08 34 00 49 E8 34 00 49 08 34 00 FC E7 1D [0m
+[0;32mI (56017) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 75 00 AB F6[0m
+[0;32mI (56017) esp_proto: Chunk 117 acked (58500/139010 bytes)[0m
+[0;32mI (56017) esp_proto: chunk: AA 12 00 5A 00 02 76 00 54 46 31 00 5E 02 55 01 12 E2 34 01 12 02 34 01 C5 E1 2D 01 C5 01 2D [0m
+[0;32mI (56417) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 76 00 AB 06[0m
+[0;32mI (56417) esp_proto: Chunk 118 acked (59000/139010 bytes)[0m
+[0;32mI (56417) esp_proto: chunk: AA 12 00 5A 00 02 77 00 54 46 31 00 1B E6 37 00 1B 06 37 00 70 E6 41 00 6C 07 3B 00 15 E7 20 [0m
+[0;32mI (56837) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 77 00 AA 96[0m
+[0;32mI (56837) esp_proto: Chunk 119 acked (59500/139010 bytes)[0m
+[0;32mI (56837) esp_proto: chunk: AA 12 00 5A 00 02 78 00 54 46 31 00 C3 05 C7 01 82 E5 CD 01 82 05 CD 01 A2 E5 D7 01 A2 05 D7 [0m
+[0;32mI (57237) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 78 00 AF 66[0m
+[0;32mI (57237) esp_proto: Chunk 120 acked (60000/139010 bytes)[0m
+[0;32mI (57237) esp_proto: chunk: AA 12 00 5A 00 02 79 00 54 46 31 00 0E E6 B7 01 0E 06 B7 01 73 E6 BC 01 73 06 BC 01 8D E6 C4 [0m
+[0;32mI (57677) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 79 00 AE F6[0m
+[0;32mI (57677) esp_proto: Chunk 121 acked (60500/139010 bytes)[0m
+[0;32mI (57677) esp_proto: chunk: AA 12 00 5A 00 02 7A 00 54 46 31 00 49 08 34 00 42 E8 33 00 42 08 33 00 1D E8 29 00 1D 08 29 [0m
+[0;32mI (58077) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 7A 00 AE 06[0m
+[0;32mI (58077) esp_proto: Chunk 122 acked (61000/139010 bytes)[0m
+[0;32mI (58077) esp_proto: chunk: AA 12 00 5A 00 02 7B 00 54 46 31 00 FC E7 1D 00 49 08 34 00 1A E8 28 00 FC 07 1D 00 1A E8 28 [0m
+[0;32mI (58477) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 7B 00 AF 96[0m
+[0;32mI (58477) esp_proto: Chunk 123 acked (61500/139010 bytes)[0m
+[0;32mI (58477) esp_proto: chunk: AA 12 00 5A 00 02 7C 00 54 46 31 00 1A 03 5C 01 2B E2 8E 01 2B 02 8E 01 E4 E2 AE 01 E4 02 AE [0m
+[0;32mI (58877) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 7C 00 AD A6[0m
+[0;32mI (58877) esp_proto: Chunk 124 acked (62000/139010 bytes)[0m
+[0;32mI (58877) esp_proto: chunk: AA 12 00 5A 00 02 7D 00 54 46 31 00 FC E7 1D 00 FC 07 1D 00 FC E7 1D 00 49 08 34 00 FC E7 1D [0m
+[0;32mI (59277) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 7D 00 AC 36[0m
+[0;32mI (59277) esp_proto: Chunk 125 acked (62500/139010 bytes)[0m
+[0;32mI (59277) esp_proto: chunk: AA 12 00 5A 00 02 7E 00 54 46 31 00 DB 02 43 01 B8 E2 55 01 B8 02 55 01 5E E2 55 01 5E 02 55 [0m
+[0;32mI (59677) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 7E 00 AC C6[0m
+[0;32mI (59677) esp_proto: Chunk 126 acked (63000/139010 bytes)[0m
+[0;32mI (59677) esp_proto: chunk: AA 12 00 5A 00 02 7F 00 54 46 31 00 FC E7 1D 00 1D 08 29 00 1D E8 29 00 FC 07 1D 00 FC E7 1D [0m
+[0;32mI (60077) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 7F 00 AD 56[0m
+[0;32mI (60077) esp_proto: Chunk 127 acked (63500/139010 bytes)[0m
+[0;32mI (60077) esp_proto: chunk: AA 12 00 5A 00 02 80 00 54 46 31 00 D5 04 A3 01 4B E4 CA 01 54 05 C1 01 88 E4 B5 01 E5 03 88 [0m
+[0;32mI (60477) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 80 00 EC A6[0m
+[0;32mI (60477) esp_proto: Chunk 128 acked (64000/139010 bytes)[0m
+[0;32mI (60477) esp_proto: chunk: AA 12 00 5A 00 02 81 00 54 46 31 00 FC E7 1D 00 3B 08 31 00 49 E8 34 00 49 08 34 00 49 E8 34 [0m
+[0;32mI (60877) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 81 00 ED 36[0m
+[0;32mI (60877) esp_proto: Chunk 129 acked (64500/139010 bytes)[0m
+[0;32mI (60877) esp_proto: chunk: AA 12 00 5A 00 02 82 00 54 46 31 00 49 08 34 00 FC E7 1D 00 FC 07 1D 00 FC E7 1D 00 FC 07 1D [0m
+[0;32mI (61297) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 82 00 ED C6[0m
+[0;32mI (61297) esp_proto: Chunk 130 acked (65000/139010 bytes)[0m
+[0;32mI (61297) esp_proto: chunk: AA 12 00 5A 00 02 83 00 54 46 31 00 FC E7 1D 00 17 08 27 00 17 E8 27 00 49 08 34 00 FC E7 1D [0m
+[0;32mI (61697) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 83 00 EC 56[0m
+[0;32mI (61697) esp_proto: Chunk 131 acked (65500/139010 bytes)[0m
+[0;32mI (61697) esp_proto: chunk: AA 12 00 5A 00 02 84 00 54 46 31 00 1A 08 28 00 0B E8 23 00 0B 08 23 00 FC E7 1D 00 FC 07 1D [0m
+[0;32mI (62137) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 84 00 EE 66[0m
+[0;32mI (62137) esp_proto: Chunk 132 acked (66000/139010 bytes)[0m
+[0;32mI (62137) esp_proto: chunk: AA 12 00 5A 00 02 85 00 54 46 31 00 90 E2 E7 00 90 02 E7 00 20 E2 C9 00 20 02 C9 00 89 E1 D6 [0m
+[0;32mI (62537) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 85 00 EF F6[0m
+[0;32mI (62537) esp_proto: Chunk 133 acked (66500/139010 bytes)[0m
+[0;32mI (62537) esp_proto: chunk: AA 12 00 5A 00 02 86 00 54 46 31 00 F4 03 57 00 5C E4 63 00 EE 05 27 00 BB E6 41 00 BB 06 41 [0m
+[0;32mI (62937) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 86 00 EF 06[0m
+[0;32mI (62937) esp_proto: Chunk 134 acked (67000/139010 bytes)[0m
+[0;32mI (62937) esp_proto: chunk: AA 12 00 5A 00 02 87 00 54 46 31 00 69 E3 8F 00 69 03 8F 00 5C E3 46 00 5C 03 46 00 07 E4 73 [0m
+[0;32mI (63357) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 87 00 EE 96[0m
+[0;32mI (63357) esp_proto: Chunk 135 acked (67500/139010 bytes)[0m
+[0;32mI (63357) esp_proto: chunk: AA 12 00 5A 00 02 88 00 54 46 31 00 20 08 2A 00 1A E8 28 00 1A 08 28 00 0B E8 23 00 0B 08 23 [0m
+[0;32mI (63817) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 88 00 EB 66[0m
+[0;32mI (63817) esp_proto: Chunk 136 acked (68000/139010 bytes)[0m
+[0;32mI (63817) esp_proto: chunk: AA 12 00 5A 00 02 89 00 54 46 31 00 0B E8 23 00 0B 08 23 00 FC E7 1D 00 FC 07 1D 00 FC E7 1D [0m
+[0;32mI (64217) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 89 00 EA F6[0m
+[0;32mI (64217) esp_proto: Chunk 137 acked (68500/139010 bytes)[0m
+[0;32mI (64217) esp_proto: chunk: AA 12 00 5A 00 02 8A 00 54 46 31 00 6C 02 61 01 1D E2 33 01 F2 01 7D 01 7A E1 36 01 A0 02 0B [0m
+[0;32mI (64637) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 8A 00 EA 06[0m
+[0;32mI (64637) esp_proto: Chunk 138 acked (69000/139010 bytes)[0m
+[0;32mI (64637) esp_proto: chunk: AA 12 00 5A 00 02 8B 00 54 46 31 00 FC E7 1D 00 FC 07 1D 00 FC E7 1D 00 FC 07 1D 00 49 E8 34 [0m
+[0;32mI (65037) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 8B 00 EB 96[0m
+[0;32mI (65037) esp_proto: Chunk 139 acked (69500/139010 bytes)[0m
+[0;32mI (65037) esp_proto: chunk: AA 12 00 5A 00 02 8C 00 54 46 31 00 35 05 AA 01 4B E4 CA 01 18 05 C1 01 B1 E4 BB 01 02 04 C6 [0m
+[0;32mI (65437) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 8C 00 E9 A6[0m
+[0;32mI (65437) esp_proto: Chunk 140 acked (70000/139010 bytes)[0m
+[0;32mI (65437) esp_proto: chunk: AA 12 00 5A 00 02 8D 00 54 46 31 00 FC E7 1D 00 FC 07 1D 00 49 E8 34 00 49 08 34 00 FC E7 1D [0m
+[0;32mI (65837) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 8D 00 E8 36[0m
+[0;32mI (65837) esp_proto: Chunk 141 acked (70500/139010 bytes)[0m
+[0;32mI (65837) esp_proto: chunk: AA 12 00 5A 00 02 8E 00 54 46 31 00 49 08 34 00 35 E8 30 00 35 08 30 00 22 E8 2A 00 22 08 2A [0m
+[0;32mI (66237) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 8E 00 E8 C6[0m
+[0;32mI (66237) esp_proto: Chunk 142 acked (71000/139010 bytes)[0m
+[0;32mI (66237) esp_proto: chunk: AA 12 00 5A 00 02 8F 00 54 46 31 00 02 E4 C6 01 94 04 9D 01 12 E4 93 01 12 04 93 01 83 E3 9D [0m
+[0;32mI (66637) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 8F 00 E9 56[0m
+[0;32mI (66637) esp_proto: Chunk 143 acked (71500/139010 bytes)[0m
+[0;32mI (66637) esp_proto: chunk: AA 12 00 5A 00 02 90 00 54 46 31 00 98 02 5D 00 69 E3 8F 00 69 03 8F 00 54 E3 6C 00 54 03 6C [0m
+[0;32mI (67077) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 90 00 E1 66[0m
+[0;32mI (67077) esp_proto: Chunk 144 acked (72000/139010 bytes)[0m
+[0;32mI (67077) esp_proto: chunk: AA 12 00 5A 00 02 91 00 54 46 31 00 C8 E6 22 00 3F 08 32 00 3F E8 32 00 3F 08 32 00 1D E8 29 [0m
+[0;32mI (67477) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 91 00 E0 F6[0m
+[0;32mI (67477) esp_proto: Chunk 145 acked (72500/139010 bytes)[0m
+[0;32mI (67477) esp_proto: chunk: AA 12 00 5A 00 02 92 00 54 46 31 00 EE 05 27 00 C8 E6 22 00 3F 08 32 00 3F E8 32 00 3F 08 32 [0m
+[0;32mI (67897) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 92 00 E0 06[0m
+[0;32mI (67897) esp_proto: Chunk 146 acked (73000/139010 bytes)[0m
+[0;32mI (67897) esp_proto: chunk: AA 12 00 5A 00 02 93 00 54 46 31 00 69 E3 8F 00 69 03 8F 00 54 E3 6C 00 54 03 6C 00 07 E4 73 [0m
+[0;32mI (68297) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 93 00 E1 96[0m
+[0;32mI (68297) esp_proto: Chunk 147 acked (73500/139010 bytes)[0m
+[0;32mI (68297) esp_proto: chunk: AA 12 00 5A 00 02 94 00 54 46 31 00 1D 08 29 00 02 E8 1F 00 02 08 1F 00 02 E8 1F 00 02 08 1F [0m
+[0;32mI (68697) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 94 00 E3 A6[0m
+[0;32mI (68697) esp_proto: Chunk 148 acked (74000/139010 bytes)[0m
+[0;32mI (68697) esp_proto: chunk: AA 12 00 5A 00 02 95 00 54 46 31 00 49 E8 34 00 49 08 34 00 20 E8 2A 00 20 08 2A 00 49 E8 34 [0m
+[0;32mI (69117) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 95 00 E2 36[0m
+[0;32mI (69117) esp_proto: Chunk 149 acked (74500/139010 bytes)[0m
+[0;32mI (69117) esp_proto: chunk: AA 12 00 5A 00 02 96 00 54 46 31 00 49 08 34 00 1A E8 28 00 FC 07 1D 00 1A E8 28 00 45 06 DB [0m
+[0;32mI (69517) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 96 00 E2 C6[0m
+[0;32mI (69517) esp_proto: Chunk 150 acked (75000/139010 bytes)[0m
+[0;32mI (69517) esp_proto: chunk: AA 12 00 5A 00 02 97 00 54 46 31 00 FC E7 1D 00 FC 07 1D 00 49 E8 34 00 49 08 34 00 FC E7 1D [0m
+[0;32mI (69917) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 97 00 E3 56[0m
+[0;32mI (69917) esp_proto: Chunk 151 acked (75500/139010 bytes)[0m
+[0;32mI (69917) esp_proto: chunk: AA 12 00 5A 00 02 98 00 54 46 31 00 1D 08 29 00 3F E8 32 00 FC 07 1D 00 49 E8 34 00 49 08 34 [0m
+[0;32mI (70317) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 98 00 E6 A6[0m
+[0;32mI (70317) esp_proto: Chunk 152 acked (76000/139010 bytes)[0m
+[0;32mI (70317) esp_proto: chunk: AA 12 00 5A 00 02 99 00 54 46 31 00 FC E7 1D 00 1D 08 29 00 1D E8 29 00 FC 07 1D 00 FC E7 1D [0m
+[0;32mI (70737) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 99 00 E7 36[0m
+[0;32mI (70737) esp_proto: Chunk 153 acked (76500/139010 bytes)[0m
+[0;32mI (70737) esp_proto: chunk: AA 12 00 5A 00 02 9A 00 54 46 31 00 3F 08 32 00 3F E8 32 00 3F 08 32 00 1D E8 29 00 1D 08 29 [0m
+[0;32mI (71137) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 9A 00 E7 C6[0m
+[0;32mI (71137) esp_proto: Chunk 154 acked (77000/139010 bytes)[0m
+[0;32mI (71137) esp_proto: chunk: AA 12 00 5A 00 02 9B 00 54 46 31 00 AA E2 1E 01 C7 02 37 01 AC E1 5F 01 7D 02 00 01 8B E2 DE [0m
+[0;32mI (71557) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 9B 00 E6 56[0m
+[0;32mI (71557) esp_proto: Chunk 155 acked (77500/139010 bytes)[0m
+[0;32mI (71557) esp_proto: chunk: AA 12 00 5A 00 02 9C 00 54 46 31 00 00 05 33 00 01 E5 43 00 01 05 43 00 5F E5 4F 00 55 06 46 [0m
+[0;32mI (71977) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 9C 00 E4 66[0m
+[0;32mI (71977) esp_proto: Chunk 156 acked (78000/139010 bytes)[0m
+[0;32mI (71977) esp_proto: chunk: AA 12 00 5A 00 02 9D 00 54 46 31 00 00 E8 1E 00 00 08 1E 00 FC E7 1D 00 3F 08 32 00 3F E8 32 [0m
+[0;32mI (72377) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 9D 00 E5 F6[0m
+[0;32mI (72377) esp_proto: Chunk 157 acked (78500/139010 bytes)[0m
+[0;32mI (72377) esp_proto: chunk: AA 12 00 5A 00 02 9E 00 54 46 31 00 49 08 34 00 42 E8 33 00 42 08 33 00 1D E8 29 00 1D 08 29 [0m
+[0;32mI (72777) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 9E 00 E5 06[0m
+[0;32mI (72777) esp_proto: Chunk 158 acked (79000/139010 bytes)[0m
+[0;32mI (72777) esp_proto: chunk: AA 12 00 5A 00 02 9F 00 54 46 31 00 EE E5 27 00 EE 05 27 00 C8 E6 22 00 FC 07 1D 00 49 E8 34 [0m
+[0;32mI (73197) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 9F 00 E4 96[0m
+[0;32mI (73197) esp_proto: Chunk 159 acked (79500/139010 bytes)[0m
+[0;32mI (73197) esp_proto: chunk: AA 12 00 5A 00 02 A0 00 54 46 31 00 20 02 C9 00 9E E1 CA 00 9E 01 CA 00 87 E1 00 01 87 01 00 [0m
+[0;32mI (73597) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 A0 00 F5 66[0m
+[0;32mI (73597) esp_proto: Chunk 160 acked (80000/139010 bytes)[0m
+[0;32mI (73597) esp_proto: chunk: AA 12 00 5A 00 02 A1 00 54 46 31 00 17 E8 27 00 49 08 34 00 FC E7 1D 00 49 08 34 00 1A E8 28 [0m
+[0;32mI (74017) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 A1 00 F4 F6[0m
+[0;32mI (74017) esp_proto: Chunk 161 acked (80500/139010 bytes)[0m
+[0;32mI (74017) esp_proto: chunk: AA 12 00 5A 00 02 A2 00 54 46 31 00 61 04 3A 00 E5 E3 42 00 E5 03 42 00 F4 E3 57 00 F4 03 57 [0m
+[0;32mI (74417) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 A2 00 F4 06[0m
+[0;32mI (74417) esp_proto: Chunk 162 acked (81000/139010 bytes)[0m
+[0;32mI (74417) esp_proto: chunk: AA 12 00 5A 00 02 A3 00 54 46 31 00 49 E8 34 00 3F 08 32 00 3F E8 32 00 3F 08 32 00 1D E8 29 [0m
+[0;32mI (74817) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 A3 00 F5 96[0m
+[0;32mI (74817) esp_proto: Chunk 163 acked (81500/139010 bytes)[0m
+[0;32mI (74817) esp_proto: chunk: AA 12 00 5A 00 02 A4 00 54 46 31 00 5F 05 B1 01 EA E4 A9 01 EA 04 A9 01 88 E4 B5 01 88 04 B5 [0m
+[0;32mI (75217) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 A4 00 F7 A6[0m
+[0;32mI (75217) esp_proto: Chunk 164 acked (82000/139010 bytes)[0m
+[0;32mI (75217) esp_proto: chunk: AA 12 00 5A 00 02 A5 00 54 46 31 00 22 E6 29 00 22 06 29 00 87 E6 23 00 87 06 23 00 D0 E6 25 [0m
+[0;32mI (75617) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 A5 00 F6 36[0m
+[0;32mI (75617) esp_proto: Chunk 165 acked (82500/139010 bytes)[0m
+[0;32mI (75617) esp_proto: chunk: AA 12 00 5A 00 02 A6 00 54 46 31 00 88 04 B5 01 81 E4 C8 01 81 04 C8 01 00 E5 CD 01 00 05 CD [0m
+[0;32mI (76037) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 A6 00 F6 C6[0m
+[0;32mI (76037) esp_proto: Chunk 166 acked (83000/139010 bytes)[0m
+[0;32mI (76037) esp_proto: chunk: AA 12 00 5A 00 02 A7 00 54 46 31 00 00 E5 CD 01 00 05 CD 01 54 E5 C1 01 54 05 C1 01 5F E5 B1 [0m
+[0;32mI (76437) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 A7 00 F7 56[0m
+[0;32mI (76437) esp_proto: Chunk 167 acked (83500/139010 bytes)[0m
+[0;32mI (76437) esp_proto: chunk: AA 12 00 5A 00 02 A8 00 54 46 31 00 FC 07 1D 00 FC E7 1D 00 FC 07 1D 00 49 E8 34 00 49 08 34 [0m
+[0;32mI (76837) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 A8 00 F2 A6[0m
+[0;32mI (76837) esp_proto: Chunk 168 acked (84000/139010 bytes)[0m
+[0;32mI (76837) esp_proto: chunk: AA 12 00 5A 00 02 A9 00 54 46 31 00 FC E7 1D 00 FC 07 1D 00 49 E8 34 00 49 08 34 00 49 E8 34 [0m
+[0;32mI (77257) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 A9 00 F3 36[0m
+[0;32mI (77257) esp_proto: Chunk 169 acked (84500/139010 bytes)[0m
+[0;32mI (77257) esp_proto: chunk: AA 12 00 5A 00 02 AA 00 54 46 31 00 39 03 9B 00 57 E2 68 00 4C 04 6B 00 AE E3 3F 00 4C 04 6B [0m
+[0;32mI (77657) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 AA 00 F3 C6[0m
+[0;32mI (77657) esp_proto: Chunk 170 acked (85000/139010 bytes)[0m
+[0;32mI (77657) esp_proto: chunk: AA 12 00 5A 00 02 AB 00 54 46 31 00 02 E8 1F 00 02 08 1F 00 1D E8 29 00 1D 08 29 00 3F E8 32 [0m
+[0;32mI (78057) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 AB 00 F2 56[0m
+[0;32mI (78057) esp_proto: Chunk 171 acked (85500/139010 bytes)[0m
+[0;32mI (78057) esp_proto: chunk: AA 12 00 5A 00 02 AC 00 54 46 31 00 FC 07 1D 00 FC E7 1D 00 FC 07 1D 00 49 E8 34 00 49 08 34 [0m
+[0;32mI (78457) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 AC 00 F0 66[0m
+[0;32mI (78457) esp_proto: Chunk 172 acked (86000/139010 bytes)[0m
+[0;32mI (78457) esp_proto: chunk: AA 12 00 5A 00 02 AD 00 54 46 31 00 02 E8 1F 00 02 08 1F 00 1D E8 29 00 1D 08 29 00 3F E8 32 [0m
+[0;32mI (78857) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 AD 00 F1 F6[0m
+[0;32mI (78857) esp_proto: Chunk 173 acked (86500/139010 bytes)[0m
+[0;32mI (78857) esp_proto: chunk: AA 12 00 5A 00 02 AE 00 54 46 31 00 F1 07 1D 00 37 E7 2D 00 49 08 34 00 49 E8 34 00 49 08 34 [0m
+[0;32mI (79277) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 AE 00 F1 06[0m
+[0;32mI (79277) esp_proto: Chunk 174 acked (87000/139010 bytes)[0m
+[0;32mI (79277) esp_proto: chunk: AA 12 00 5A 00 02 AF 00 54 46 31 00 3F E8 32 00 3F 08 32 00 1D E8 29 00 1D 08 29 00 02 E8 1F [0m
+[0;32mI (79677) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 AF 00 F0 96[0m
+[0;32mI (79677) esp_proto: Chunk 175 acked (87500/139010 bytes)[0m
+[0;32mI (79677) esp_proto: chunk: AA 12 00 5A 00 02 B0 00 54 46 31 00 3A 04 93 01 34 E3 B6 01 06 04 AF 01 9C E3 A5 01 A5 03 7D [0m
+[0;32mI (80077) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 B0 00 F8 A6[0m
+[0;32mI (80077) esp_proto: Chunk 176 acked (88000/139010 bytes)[0m
+[0;32mI (80077) esp_proto: chunk: AA 12 00 5A 00 02 B1 00 54 46 31 00 6C E1 E2 00 CE 02 C4 00 B9 E1 9A 00 39 03 9B 00 57 E2 68 [0m
+[0;32mI (80477) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 B1 00 F9 36[0m
+[0;32mI (80477) esp_proto: Chunk 177 acked (88500/139010 bytes)[0m
+[0;32mI (80477) esp_proto: chunk: AA 12 00 5A 00 02 B2 00 54 46 31 00 98 02 5D 00 5C E3 46 00 48 05 55 00 01 E5 2E 00 01 05 2E [0m
+[0;32mI (80877) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 B2 00 F9 C6[0m
+[0;32mI (80877) esp_proto: Chunk 178 acked (89000/139010 bytes)[0m
+[0;32mI (80877) esp_proto: chunk: AA 12 00 5A 00 02 B3 00 54 46 31 00 3F E8 32 00 3F 08 32 00 1D E8 29 00 1D 08 29 00 02 E8 1F [0m
+[0;32mI (81277) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 B3 00 F8 56[0m
+[0;32mI (81277) esp_proto: Chunk 179 acked (89500/139010 bytes)[0m
+[0;32mI (81277) esp_proto: chunk: AA 12 00 5A 00 02 B4 00 54 46 31 00 22 08 2A 00 FC E7 1D 00 49 08 34 00 49 E8 34 00 49 08 34 [0m
+[0;32mI (81677) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 B4 00 FA 66[0m
+[0;32mI (81677) esp_proto: Chunk 180 acked (90000/139010 bytes)[0m
+[0;32mI (81677) esp_proto: chunk: AA 12 00 5A 00 02 B5 00 54 46 31 00 B9 E1 9A 00 39 03 9B 00 57 E2 68 00 3F 02 B4 00 C0 E2 85 [0m
+[0;32mI (82097) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 B5 00 FB F6[0m
+[0;32mI (82097) esp_proto: Chunk 181 acked (90500/139010 bytes)[0m
+[0;32mI (82097) esp_proto: chunk: AA 12 00 5A 00 02 B6 00 54 46 31 00 FC 07 1D 00 FC E7 1D 00 FC 07 1D 00 49 E8 34 00 49 08 34 [0m
+[0;32mI (82517) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 B6 00 FB 06[0m
+[0;32mI (82517) esp_proto: Chunk 182 acked (91000/139010 bytes)[0m
+[0;32mI (82517) esp_proto: chunk: AA 12 00 5A 00 02 B7 00 54 46 31 00 5C E3 46 00 48 05 55 00 01 E5 2E 00 01 05 2E 00 69 E5 3E [0m
+[0;32mI (82917) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 B7 00 FA 96[0m
+[0;32mI (82917) esp_proto: Chunk 183 acked (91500/139010 bytes)[0m
+[0;32mI (82917) esp_proto: chunk: AA 12 00 5A 00 02 B8 00 54 46 31 00 3F 08 32 00 1D E8 29 00 1D 08 29 00 02 E8 1F 00 02 08 1F [0m
+[0;32mI (83337) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 B8 00 FF 66[0m
+[0;32mI (83337) esp_proto: Chunk 184 acked (92000/139010 bytes)[0m
+[0;32mI (83337) esp_proto: chunk: AA 12 00 5A 00 02 B9 00 54 46 31 00 85 E2 A0 01 A0 02 0B 01 B6 E2 D6 00 A2 02 F0 00 6C E1 E2 [0m
+[0;32mI (83757) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 B9 00 FE F6[0m
+[0;32mI (83757) esp_proto: Chunk 185 acked (92500/139010 bytes)[0m
+[0;32mI (83757) esp_proto: chunk: AA 12 00 5A 00 02 BA 00 54 46 31 00 FC 07 1D 00 1A E8 28 00 49 08 34 00 49 E8 34 00 49 08 34 [0m
+[0;32mI (84197) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 BA 00 FE 06[0m
+[0;32mI (84197) esp_proto: Chunk 186 acked (93000/139010 bytes)[0m
+[0;32mI (84197) esp_proto: chunk: AA 12 00 5A 00 02 BB 00 54 46 31 00 3F E8 32 00 3F 08 32 00 1D E8 29 00 1D 08 29 00 02 E8 1F [0m
+[0;32mI (84597) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 BB 00 FF 96[0m
+[0;32mI (84597) esp_proto: Chunk 187 acked (93500/139010 bytes)[0m
+[0;32mI (84597) esp_proto: chunk: AA 12 00 5A 00 02 BC 00 54 46 31 00 88 06 43 00 3A E6 3F 00 3A 06 3F 00 49 E6 36 00 49 06 36 [0m
+[0;32mI (84997) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 BC 00 FD A6[0m
+[0;32mI (84997) esp_proto: Chunk 188 acked (94000/139010 bytes)[0m
+[0;32mI (84997) esp_proto: chunk: AA 12 00 5A 00 02 BD 00 54 46 31 00 C0 E2 85 00 C0 02 85 00 2A E2 7B 00 2A 02 7B 00 B9 E1 9A [0m
+[0;32mI (85397) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 BD 00 FC 36[0m
+[0;32mI (85397) esp_proto: Chunk 189 acked (94500/139010 bytes)[0m
+[0;32mI (85397) esp_proto: chunk: AA 12 00 5A 00 02 BE 00 54 46 31 00 45 06 DB 01 A7 E6 BE 01 A7 06 BE 01 09 E6 C7 01 09 06 C7 [0m
+[0;32mI (85817) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 BE 00 FC C6[0m
+[0;32mI (85817) esp_proto: Chunk 190 acked (95000/139010 bytes)[0m
+[0;32mI (85817) esp_proto: chunk: AA 12 00 5A 00 02 BF 00 54 46 31 00 17 E8 27 00 FC 07 1D 00 49 E8 34 00 49 08 34 00 FC E7 1D [0m
+[0;32mI (86217) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 BF 00 FD 56[0m
+[0;32mI (86217) esp_proto: Chunk 191 acked (95500/139010 bytes)[0m
+[0;32mI (86217) esp_proto: chunk: AA 12 00 5A 00 02 C0 00 54 46 31 00 4B 04 36 00 05 E5 5A 00 CB 04 30 00 AA E5 4E 00 AA 05 4E [0m
+[0;32mI (86637) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 C0 00 DD 66[0m
+[0;32mI (86637) esp_proto: Chunk 192 acked (96000/139010 bytes)[0m
+[0;32mI (86637) esp_proto: chunk: AA 12 00 5A 00 02 C1 00 54 46 31 00 FC E7 1D 00 1D 08 29 00 1D E8 29 00 FC 07 1D 00 FC E7 1D [0m
+[0;32mI (87037) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 C1 00 DC F6[0m
+[0;32mI (87037) esp_proto: Chunk 193 acked (96500/139010 bytes)[0m
+[0;32mI (87037) esp_proto: chunk: AA 12 00 5A 00 02 C2 00 54 46 31 00 CB 04 30 00 AA E5 4E 00 AA 05 4E 00 A2 E5 29 00 2C 05 3E [0m
+[0;32mI (87457) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 C2 00 DC 06[0m
+[0;32mI (87457) esp_proto: Chunk 194 acked (97000/139010 bytes)[0m
+[0;32mI (87457) esp_proto: chunk: AA 12 00 5A 00 02 C3 00 54 46 31 00 1D E8 29 00 FC 07 1D 00 FC E7 1D 00 FC 07 1D 00 49 E8 34 [0m
+[0;32mI (87857) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 C3 00 DD 96[0m
+[0;32mI (87857) esp_proto: Chunk 195 acked (97500/139010 bytes)[0m
+[0;32mI (87857) esp_proto: chunk: AA 12 00 5A 00 02 C4 00 54 46 31 00 3F 02 B4 00 C1 E2 B8 00 EA 03 6E 00 D5 E3 7B 00 D5 03 7B [0m
+[0;32mI (88277) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 C4 00 DF A6[0m
+[0;32mI (88277) esp_proto: Chunk 196 acked (98000/139010 bytes)[0m
+[0;32mI (88277) esp_proto: chunk: AA 12 00 5A 00 02 C5 00 54 46 31 00 49 E8 34 00 49 08 34 00 FC E7 1D 00 49 08 34 00 49 E8 34 [0m
+[0;32mI (88697) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 C5 00 DE 36[0m
+[0;32mI (88697) esp_proto: Chunk 197 acked (98500/139010 bytes)[0m
+[0;32mI (88697) esp_proto: chunk: AA 12 00 5A 00 02 C6 00 54 46 31 00 FC 07 1D 00 FC E7 1D 00 FC 07 1D 00 08 E8 22 00 08 08 22 [0m
+[0;32mI (89097) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 C6 00 DE C6[0m
+[0;32mI (89097) esp_proto: Chunk 198 acked (99000/139010 bytes)[0m
+[0;32mI (89097) esp_proto: chunk: AA 12 00 5A 00 02 C7 00 54 46 31 00 02 E8 1F 00 02 08 1F 00 1D E8 29 00 1D 08 29 00 3F E8 32 [0m
+[0;32mI (89517) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 C7 00 DF 56[0m
+[0;32mI (89517) esp_proto: Chunk 199 acked (99500/139010 bytes)[0m
+[0;32mI (89517) esp_proto: chunk: AA 12 00 5A 00 02 C8 00 54 46 31 00 49 08 34 00 49 E8 34 00 49 08 34 00 FC E7 1D 00 1D 08 29 [0m
+[0;32mI (89917) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 C8 00 DA A6[0m
+[0;32mI (89917) esp_proto: Chunk 200 acked (100000/139010 bytes)[0m
+[0;32mI (89917) esp_proto: chunk: AA 12 00 5A 00 02 C9 00 54 46 31 00 C0 E2 85 00 C0 02 85 00 4A E2 77 00 4A 02 77 00 EE E1 95 [0m
+[0;32mI (90337) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 C9 00 DB 36[0m
+[0;32mI (90337) esp_proto: Chunk 201 acked (100500/139010 bytes)[0m
+[0;32mI (90337) esp_proto: chunk: AA 12 00 5A 00 02 CA 00 54 46 31 00 49 08 34 00 49 E8 34 00 49 08 34 00 FC E7 1D 00 FC 07 1D [0m
+[0;32mI (90737) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 CA 00 DB C6[0m
+[0;32mI (90737) esp_proto: Chunk 202 acked (101000/139010 bytes)[0m
+[0;32mI (90737) esp_proto: chunk: AA 12 00 5A 00 02 CB 00 54 46 31 00 EE E5 27 00 FC 07 1D 00 49 E8 34 00 49 08 34 00 20 E8 2A [0m
+[0;32mI (91137) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 CB 00 DA 56[0m
+[0;32mI (91137) esp_proto: Chunk 203 acked (101500/139010 bytes)[0m
+[0;32mI (91137) esp_proto: chunk: AA 12 00 5A 00 02 CC 00 54 46 31 00 3B 08 31 00 49 E8 34 00 49 08 34 00 49 E8 34 00 49 08 34 [0m
+[0;32mI (91537) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 CC 00 D8 66[0m
+[0;32mI (91537) esp_proto: Chunk 204 acked (102000/139010 bytes)[0m
+[0;32mI (91537) esp_proto: chunk: AA 12 00 5A 00 02 CD 00 54 46 31 00 EE E5 27 00 55 06 46 00 D2 E6 3E 00 D2 06 3E 00 EF E6 30 [0m
+[0;32mI (91937) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 CD 00 D9 F6[0m
+[0;32mI (91937) esp_proto: Chunk 205 acked (102500/139010 bytes)[0m
+[0;32mI (91937) esp_proto: chunk: AA 12 00 5A 00 02 CE 00 54 46 31 00 08 08 22 00 FC E7 1D 00 FC 07 1D 00 FC E7 1D 00 FC 07 1D [0m
+[0;32mI (92337) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 CE 00 D9 06[0m
+[0;32mI (92337) esp_proto: Chunk 206 acked (103000/139010 bytes)[0m
+[0;32mI (92337) esp_proto: chunk: AA 12 00 5A 00 02 CF 00 54 46 31 00 6E E3 84 00 6E 03 84 00 F7 E2 79 00 F7 02 79 00 CF E2 5E [0m
+[0;32mI (92737) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 CF 00 D8 96[0m
+[0;32mI (92737) esp_proto: Chunk 207 acked (103500/139010 bytes)[0m
+[0;32mI (92737) esp_proto: chunk: AA 12 00 5A 00 02 D0 00 54 46 31 00 1D 08 29 00 00 E8 1E 00 00 08 1E 00 FC E7 1D 00 49 08 34 [0m
+[0;32mI (93137) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 D0 00 D0 A6[0m
+[0;32mI (93137) esp_proto: Chunk 208 acked (104000/139010 bytes)[0m
+[0;32mI (93137) esp_proto: chunk: AA 12 00 5A 00 02 D1 00 54 46 31 00 D5 E4 A3 01 94 04 9D 01 02 E4 C6 01 94 04 9D 01 12 E4 93 [0m
+[0;32mI (93557) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 D1 00 D1 36[0m
+[0;32mI (93557) esp_proto: Chunk 209 acked (104500/139010 bytes)[0m
+[0;32mI (93557) esp_proto: chunk: AA 12 00 5A 00 02 D2 00 54 46 31 00 49 08 34 00 FC E7 1D 00 FC 07 1D 00 FC E7 1D 00 3B 08 31 [0m
+[0;32mI (93977) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 D2 00 D1 C6[0m
+[0;32mI (93977) esp_proto: Chunk 210 acked (105000/139010 bytes)[0m
+[0;32mI (93977) esp_proto: chunk: AA 12 00 5A 00 02 D3 00 54 46 31 00 20 E8 2A 00 20 08 2A 00 49 E8 34 00 49 08 34 00 FC E7 1D [0m
+[0;32mI (94397) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 D3 00 D0 56[0m
+[0;32mI (94397) esp_proto: Chunk 211 acked (105500/139010 bytes)[0m
+[0;32mI (94397) esp_proto: chunk: AA 12 00 5A 00 02 D4 00 54 46 31 00 05 05 5A 00 EF E3 55 00 80 04 33 00 EF E3 55 00 0E 06 49 [0m
+[0;32mI (94817) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 D4 00 D2 66[0m
+[0;32mI (94817) esp_proto: Chunk 212 acked (106000/139010 bytes)[0m
+[0;32mI (94817) esp_proto: chunk: AA 12 00 5A 00 02 D5 00 54 46 31 00 3F E8 32 00 3F 08 32 00 1D E8 29 00 1D 08 29 00 02 E8 1F [0m
+[0;32mI (95237) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 D5 00 D3 F6[0m
+[0;32mI (95237) esp_proto: Chunk 213 acked (106500/139010 bytes)[0m
+[0;32mI (95237) esp_proto: chunk: AA 12 00 5A 00 02 D6 00 54 46 31 00 FC 07 1D 00 06 E8 21 00 06 08 21 00 17 E8 27 00 17 08 27 [0m
+[0;32mI (95657) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 D6 00 D3 06[0m
+[0;32mI (95657) esp_proto: Chunk 214 acked (107000/139010 bytes)[0m
+[0;32mI (95657) esp_proto: chunk: AA 12 00 5A 00 02 D7 00 54 46 31 00 FB E2 A5 00 FB 02 A5 00 C0 E2 85 00 C0 02 85 00 2A E2 7B [0m
+[0;32mI (96097) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 D7 00 D2 96[0m
+[0;32mI (96097) esp_proto: Chunk 215 acked (107500/139010 bytes)[0m
+[0;32mI (96097) esp_proto: chunk: AA 12 00 5A 00 02 D8 00 54 46 31 00 4C 04 6B 00 5B E4 50 00 5B 04 50 00 05 E5 5A 00 05 05 5A [0m
+[0;32mI (96517) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 D8 00 D7 66[0m
+[0;32mI (96517) esp_proto: Chunk 216 acked (108000/139010 bytes)[0m
+[0;32mI (96517) esp_proto: chunk: AA 12 00 5A 00 02 D9 00 54 46 31 00 B9 E1 9A 00 AE 03 3F 00 4C E4 6B 00 4C 04 6B 00 5B E4 50 [0m
+[0;32mI (96937) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 D9 00 D6 F6[0m
+[0;32mI (96937) esp_proto: Chunk 217 acked (108500/139010 bytes)[0m
+[0;32mI (96937) esp_proto: chunk: AA 12 00 5A 00 02 DA 00 54 46 31 00 5C 03 BA 01 53 E3 AB 01 53 03 AB 01 E5 E3 88 01 F3 02 4E [0m
+[0;32mI (97337) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 DA 00 D6 06[0m
+[0;32mI (97337) esp_proto: Chunk 218 acked (109000/139010 bytes)[0m
+[0;32mI (97337) esp_proto: chunk: AA 12 00 5A 00 02 DB 00 54 46 31 00 FC E7 1D 00 49 08 34 00 1D E8 29 00 49 08 34 00 1D E8 29 [0m
+[0;32mI (97737) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 DB 00 D7 96[0m
+[0;32mI (97737) esp_proto: Chunk 219 acked (109500/139010 bytes)[0m
+[0;32mI (97737) esp_proto: chunk: AA 12 00 5A 00 02 DC 00 54 46 31 00 49 08 34 00 1A E8 28 00 FC 07 1D 00 1A E8 28 00 49 08 34 [0m
+[0;32mI (98137) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 DC 00 D5 A6[0m
+[0;32mI (98137) esp_proto: Chunk 220 acked (110000/139010 bytes)[0m
+[0;32mI (98137) esp_proto: chunk: AA 12 00 5A 00 02 DD 00 54 46 31 00 1D E8 29 00 1D 08 29 00 3F E8 32 00 49 08 34 00 FC E7 1D [0m
+[0;32mI (98537) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 DD 00 D4 36[0m
+[0;32mI (98537) esp_proto: Chunk 221 acked (110500/139010 bytes)[0m
+[0;32mI (98537) esp_proto: chunk: AA 12 00 5A 00 02 DE 00 54 46 31 00 3F 08 32 00 1D E8 29 00 1D 08 29 00 02 E8 1F 00 02 08 1F [0m
+[0;32mI (98977) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 DE 00 D4 C6[0m
+[0;32mI (98977) esp_proto: Chunk 222 acked (111000/139010 bytes)[0m
+[0;32mI (98977) esp_proto: chunk: AA 12 00 5A 00 02 DF 00 54 46 31 00 FC E7 1D 00 1D 08 29 00 1D E8 29 00 FC 07 1D 00 FC E7 1D [0m
+[0;32mI (99377) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 DF 00 D5 56[0m
+[0;32mI (99377) esp_proto: Chunk 223 acked (111500/139010 bytes)[0m
+[0;32mI (99377) esp_proto: chunk: AA 12 00 5A 00 02 E0 00 54 46 31 00 02 08 1F 00 FC E7 1D 00 FC 07 1D 00 06 E8 21 00 06 08 21 [0m
+[0;32mI (99797) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 E0 00 C4 A6[0m
+[0;32mI (99797) esp_proto: Chunk 224 acked (112000/139010 bytes)[0m
+[0;32mI (99797) esp_proto: chunk: AA 12 00 5A 00 02 E1 00 54 46 31 00 FC E7 1D 00 FC 07 1D 00 49 E8 34 00 49 08 34 00 FC E7 1D [0m
+[0;32mI (100197) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 E1 00 C5 36[0m
+[0;32mI (100197) esp_proto: Chunk 225 acked (112500/139010 bytes)[0m
+[0;32mI (100197) esp_proto: chunk: AA 12 00 5A 00 02 E2 00 54 46 31 00 FC 07 1D 00 49 E8 34 00 38 08 30 00 49 E8 34 00 49 08 34 [0m
+[0;32mI (100597) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 E2 00 C5 C6[0m
+[0;32mI (100597) esp_proto: Chunk 226 acked (113000/139010 bytes)[0m
+[0;32mI (100597) esp_proto: chunk: AA 12 00 5A 00 02 E3 00 54 46 31 00 49 E8 34 00 49 08 34 00 FC E7 1D 00 49 08 34 00 49 E8 34 [0m
+[0;32mI (100997) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 E3 00 C4 56[0m
+[0;32mI (100997) esp_proto: Chunk 227 acked (113500/139010 bytes)[0m
+[0;32mI (100997) esp_proto: chunk: AA 12 00 5A 00 02 E4 00 54 46 31 00 01 05 43 00 A7 E5 3B 00 CB 04 30 00 A2 E5 29 00 31 08 31 [0m
+[0;32mI (101397) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 E4 00 C6 66[0m
+[0;32mI (101397) esp_proto: Chunk 228 acked (114000/139010 bytes)[0m
+[0;32mI (101397) esp_proto: chunk: AA 12 00 5A 00 02 E5 00 54 46 31 00 1A E8 28 00 1A 08 28 00 0B E8 23 00 0B 08 23 00 FC E7 1D [0m
+[0;32mI (101797) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 E5 00 C7 F6[0m
+[0;32mI (101797) esp_proto: Chunk 229 acked (114500/139010 bytes)[0m
+[0;32mI (101797) esp_proto: chunk: AA 12 00 5A 00 02 E6 00 54 46 31 00 1D 08 29 00 3F E8 32 00 FC 07 1D 00 49 E8 34 00 49 08 34 [0m
+[0;32mI (102197) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 E6 00 C7 06[0m
+[0;32mI (102197) esp_proto: Chunk 230 acked (115000/139010 bytes)[0m
+[0;32mI (102197) esp_proto: chunk: AA 12 00 5A 00 02 E7 00 54 46 31 00 4B E4 CA 01 94 04 9D 01 02 E4 C6 01 02 04 C6 01 34 E3 B6 [0m
+[0;32mI (102597) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 E7 00 C6 96[0m
+[0;32mI (102597) esp_proto: Chunk 231 acked (115500/139010 bytes)[0m
+[0;32mI (102597) esp_proto: chunk: AA 12 00 5A 00 02 E8 00 54 46 31 00 A8 03 5F 00 43 E3 4F 00 43 03 4F 00 CF E2 5E 00 CF 02 5E [0m
+[0;32mI (103037) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 E8 00 C3 66[0m
+[0;32mI (103037) esp_proto: Chunk 232 acked (116000/139010 bytes)[0m
+[0;32mI (103037) esp_proto: chunk: AA 12 00 5A 00 02 E9 00 54 46 31 00 5C E3 46 00 4C 04 6B 00 AE E3 3F 00 AE 03 3F 00 80 E4 33 [0m
+[0;32mI (103457) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 E9 00 C2 F6[0m
+[0;32mI (103457) esp_proto: Chunk 233 acked (116500/139010 bytes)[0m
+[0;32mI (103457) esp_proto: chunk: AA 12 00 5A 00 02 EA 00 54 46 31 00 81 04 C8 01 00 E5 CD 01 00 05 CD 01 54 E5 C1 01 54 05 C1 [0m
+[0;32mI (103857) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 EA 00 C2 06[0m
+[0;32mI (103857) esp_proto: Chunk 234 acked (117000/139010 bytes)[0m
+[0;32mI (103857) esp_proto: chunk: AA 12 00 5A 00 02 EB 00 54 46 31 00 1B E4 BC 01 1B 04 BC 01 CE E3 C3 01 CE 03 C3 01 5C E3 BA [0m
+[0;32mI (104277) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 EB 00 C3 96[0m
+[0;32mI (104277) esp_proto: Chunk 235 acked (117500/139010 bytes)[0m
+[0;32mI (104277) esp_proto: chunk: AA 12 00 5A 00 02 EC 00 54 46 31 00 06 06 C9 01 D9 E5 D9 01 5F 05 B1 01 EA E4 A9 01 EA 04 A9 [0m
+[0;32mI (104677) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 EC 00 C1 A6[0m
+[0;32mI (104677) esp_proto: Chunk 236 acked (118000/139010 bytes)[0m
+[0;32mI (104677) esp_proto: chunk: AA 12 00 5A 00 02 ED 00 54 46 31 00 49 E8 34 00 49 08 34 00 FC E7 1D 00 49 08 34 00 42 E8 33 [0m
+[0;32mI (105077) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 ED 00 C0 36[0m
+[0;32mI (105077) esp_proto: Chunk 237 acked (118500/139010 bytes)[0m
+[0;32mI (105087) esp_proto: chunk: AA 12 00 5A 00 02 EE 00 54 46 31 00 3F 08 32 00 1D E8 29 00 1D 08 29 00 02 E8 1F 00 02 08 1F [0m
+[0;32mI (105477) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 EE 00 C0 C6[0m
+[0;32mI (105477) esp_proto: Chunk 238 acked (119000/139010 bytes)[0m
+[0;32mI (105487) esp_proto: chunk: AA 12 00 5A 00 02 EF 00 54 46 31 00 1D E8 29 00 1D 08 29 00 3F E8 32 00 49 08 34 00 FC E7 1D [0m
+[0;32mI (105877) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 EF 00 C1 56[0m
+[0;32mI (105877) esp_proto: Chunk 239 acked (119500/139010 bytes)[0m
+[0;32mI (105887) esp_proto: chunk: AA 12 00 5A 00 02 F0 00 54 46 31 00 FC 07 1D 00 FC E7 1D 00 FC 07 1D 00 49 E8 34 00 49 08 34 [0m
+[0;32mI (106277) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 F0 00 C9 66[0m
+[0;32mI (106277) esp_proto: Chunk 240 acked (120000/139010 bytes)[0m
+[0;32mI (106287) esp_proto: chunk: AA 12 00 5A 00 02 F1 00 54 46 31 00 D9 E5 D9 01 5F 05 B1 01 EA E4 A9 01 EA 04 A9 01 88 E4 B5 [0m
+[0;32mI (106677) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 F1 00 C8 F6[0m
+[0;32mI (106677) esp_proto: Chunk 241 acked (120500/139010 bytes)[0m
+[0;32mI (106687) esp_proto: chunk: AA 12 00 5A 00 02 F2 00 54 46 31 00 49 08 34 00 FC E7 1D 00 49 08 34 00 42 E8 33 00 42 08 33 [0m
+[0;32mI (107097) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 F2 00 C8 06[0m
+[0;32mI (107097) esp_proto: Chunk 242 acked (121000/139010 bytes)[0m
+[0;32mI (107107) esp_proto: chunk: AA 12 00 5A 00 02 F3 00 54 46 31 00 D9 E5 D9 01 5F 05 B1 01 EA E4 A9 01 EA 04 A9 01 88 E4 B5 [0m
+[0;32mI (107497) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 F3 00 C9 96[0m
+[0;32mI (107497) esp_proto: Chunk 243 acked (121500/139010 bytes)[0m
+[0;32mI (107507) esp_proto: chunk: AA 12 00 5A 00 02 F4 00 54 46 31 00 49 08 34 00 FC E7 1D 00 49 08 34 00 42 E8 33 00 42 08 33 [0m
+[0;32mI (107937) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 F4 00 CB A6[0m
+[0;32mI (107937) esp_proto: Chunk 244 acked (122000/139010 bytes)[0m
+[0;32mI (107947) esp_proto: chunk: AA 12 00 5A 00 02 F5 00 54 46 31 00 49 E8 34 00 49 08 34 00 49 E8 34 00 49 08 34 00 FC E7 1D [0m
+[0;32mI (108337) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 F5 00 CA 36[0m
+[0;32mI (108337) esp_proto: Chunk 245 acked (122500/139010 bytes)[0m
+[0;32mI (108347) esp_proto: chunk: AA 12 00 5A 00 02 F6 00 54 46 31 00 02 08 1F 00 1D E8 29 00 1D 08 29 00 3F E8 32 00 49 08 34 [0m
+[0;32mI (108737) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 F6 00 CA C6[0m
+[0;32mI (108737) esp_proto: Chunk 246 acked (123000/139010 bytes)[0m
+[0;32mI (108747) esp_proto: chunk: AA 12 00 5A 00 02 F7 00 54 46 31 00 1A E8 28 00 FC 07 1D 00 1A E8 28 00 FC 07 1D 00 49 E8 34 [0m
+[0;32mI (109177) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 F7 00 CB 56[0m
+[0;32mI (109177) esp_proto: Chunk 247 acked (123500/139010 bytes)[0m
+[0;32mI (109187) esp_proto: chunk: AA 12 00 5A 00 02 F8 00 54 46 31 00 88 04 B5 01 81 E4 C8 01 81 04 C8 01 00 E5 CD 01 00 05 CD [0m
+[0;32mI (109577) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 F8 00 CE A6[0m
+[0;32mI (109577) esp_proto: Chunk 248 acked (124000/139010 bytes)[0m
+[0;32mI (109587) esp_proto: chunk: AA 12 00 5A 00 02 F9 00 54 46 31 00 07 E2 EB 00 07 02 EB 00 6C E1 E2 00 C1 02 B8 00 04 E3 9E [0m
+[0;32mI (109977) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 F9 00 CF 36[0m
+[0;32mI (109977) esp_proto: Chunk 249 acked (124500/139010 bytes)[0m
+[0;32mI (109987) esp_proto: chunk: AA 12 00 5A 00 02 FA 00 54 46 31 00 04 03 9E 00 C0 E2 85 00 C0 02 85 00 4A E2 77 00 4A 02 77 [0m
+[0;32mI (110397) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 FA 00 CF C6[0m
+[0;32mI (110397) esp_proto: Chunk 250 acked (125000/139010 bytes)[0m
+[0;32mI (110407) esp_proto: chunk: AA 12 00 5A 00 02 FB 00 54 46 31 00 A5 E3 7D 01 A5 03 7D 01 2B E2 8E 01 A0 02 0B 01 07 E2 EB [0m
+[0;32mI (110797) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 FB 00 CE 56[0m
+[0;32mI (110797) esp_proto: Chunk 251 acked (125500/139010 bytes)[0m
+[0;32mI (110807) esp_proto: chunk: AA 12 00 5A 00 02 FC 00 54 46 31 00 5F 05 B1 01 EA E4 A9 01 EA 04 A9 01 88 E4 B5 01 88 04 B5 [0m
+[0;32mI (111197) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 FC 00 CC 66[0m
+[0;32mI (111197) esp_proto: Chunk 252 acked (126000/139010 bytes)[0m
+[0;32mI (111207) esp_proto: chunk: AA 12 00 5A 00 02 FD 00 54 46 31 00 49 E8 34 00 49 08 34 00 FC E7 1D 00 17 08 27 00 17 E8 27 [0m
+[0;32mI (111617) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 FD 00 CD F6[0m
+[0;32mI (111617) esp_proto: Chunk 253 acked (126500/139010 bytes)[0m
+[0;32mI (111627) esp_proto: chunk: AA 12 00 5A 00 02 FE 00 54 46 31 00 28 05 4D 00 2F E5 42 00 2F 05 42 00 A3 E5 3A 00 A3 05 3A [0m
+[0;32mI (112017) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 FE 00 CD 06[0m
+[0;32mI (112017) esp_proto: Chunk 254 acked (127000/139010 bytes)[0m
+[0;32mI (112027) esp_proto: chunk: AA 12 00 5A 00 02 FF 00 54 46 31 00 02 E8 1F 00 02 08 1F 00 1D E8 29 00 1D 08 29 00 3F E8 32 [0m
+[0;32mI (112417) esp_proto: notify fragment: 5A 12 00 AA 0A 00 00 00 FF 00 CC 96[0m
+[0;32mI (112417) esp_proto: Chunk 255 acked (127500/139010 bytes)[0m
+[0;32mI (112427) esp_proto: chunk: AA 12 00 5A 00 02 00 00 54 46 31 00 CE 02 C4 00 79 E2 9B 00 39 03 9B 00 79 E2 9B 00 79 02 9B [0m
+[0;32mI (112817) esp_proto: notify fragment: 5A 12 00 AA 0A 00 0A 00 00 00 8E BE[0m
+[0;33mW (112817) esp_proto: Fixture reported chunk failure (status=10)[0m
+[0;33mW (112827) esp_proto: Resending chunk seq 0 (attempt 1)[0m
+[0;32mI (112827) esp_proto: chunk resend: AA 12 00 5A 00 02 00 00 54 46 31 00 CE 02 C4 00 79 E2 9B 00 39 03 9B 00 79 E2 9B 00 79 02 9B [0m
+[0;32mI (113217) esp_proto: notify fragment: 5A 12 00 AA 0A 00 0A 00 00 00 8E BE[0m
+[0;33mW (113217) esp_proto: Fixture reported chunk failure (status=10)[0m
+[0;33mW (113227) esp_proto: Resending chunk seq 0 (attempt 2)[0m
+[0;32mI (113227) esp_proto: chunk resend: AA 12 00 5A 00 02 00 00 54 46 31 00 CE 02 C4 00 79 E2 9B 00 39 03 9B 00 79 E2 9B 00 79 02 9B [0m
+[0;32mI (113617) esp_proto: notify fragment: 5A 12 00 AA 0A 00 0A 00 00 00 8E BE[0m
+[0;33mW (113617) esp_proto: Fixture reported chunk failure (status=10)[0m
+[0;33mW (113627) esp_proto: Resending chunk seq 0 (attempt 3)[0m
+[0;32mI (113627) esp_proto: chunk resend: AA 12 00 5A 00 02 00 00 54 46 31 00 CE 02 C4 00 79 E2 9B 00 39 03 9B 00 79 E2 9B 00 79 02 9B [0m
+[0;32mI (114017) esp_proto: notify fragment: 5A 12 00 AA 0A 00 0A 00 00 00 8E BE[0m
+[0;33mW (114017) esp_proto: Fixture reported chunk failure (status=10)[0m
+[1;31mE (114027) esp_proto: Chunk retry limit reached; giving up[0m

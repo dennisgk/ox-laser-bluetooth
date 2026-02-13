@@ -135,9 +135,17 @@ class TF1EditorApp:
 
         frame_box = ttk.LabelFrame(left, text="Frames", padding=6)
         frame_box.pack(fill="x", pady=4)
-        self.frame_list = tk.Listbox(frame_box, exportselection=False, height=6, width=28)
-        self.frame_list.pack(fill="x")
+        frame_list_wrap = ttk.Frame(frame_box)
+        frame_list_wrap.pack(fill="x")
+        self.frame_list = tk.Listbox(frame_list_wrap, exportselection=False, height=6, width=28)
+        self.frame_list.pack(side="left", fill="both", expand=True)
+        self.frame_scroll = ttk.Scrollbar(frame_list_wrap, orient="vertical", command=self.frame_list.yview)
+        self.frame_scroll.pack(side="right", fill="y")
+        self.frame_list.configure(yscrollcommand=self.frame_scroll.set)
         self.frame_list.bind("<<ListboxSelect>>", self.on_frame_select)
+        self.frame_list.bind("<ButtonRelease-1>", self.on_frame_click)
+        self.frame_list.bind("<Up>", self.on_frame_up)
+        self.frame_list.bind("<Down>", self.on_frame_down)
         ttk.Button(frame_box, text="Add Frame", command=self.add_frame).pack(fill="x", pady=2)
         ttk.Button(frame_box, text="Delete Frame", command=self.delete_frame).pack(fill="x")
         ttk.Entry(frame_box, textvariable=self.frame_time_var).pack(fill="x", pady=2)
@@ -248,7 +256,6 @@ class TF1EditorApp:
     def start_preview(self) -> None:
         if self.preview_running:
             return
-        self._commit_ui_to_model()
         self.preview_speed = self._parse_speed_multiplier()
         self.preview_running = True
         self.preview_start_scene = self.current_scene
@@ -270,7 +277,14 @@ class TF1EditorApp:
 
         self.current_frame = self.preview_frame_idx
         self.preview_frame_idx += 1
-        self._refresh_frame_list()
+        self.frame_list.selection_clear(0, tk.END)
+        self.frame_list.selection_set(self.current_frame)
+        self.frame_list.activate(self.current_frame)
+        self.frame_list.see(self.current_frame)
+        self.frame_time_var.set(str(scene.frames[self.current_frame].time_ms))
+        self.selected_pattern = None
+        self.selected_point = None
+        self._refresh_pattern_list()
 
         delay = max(1, int(scene.frames[self.current_frame].time_ms / self.preview_speed))
         self.preview_after_id = self.root.after(delay, self._preview_tick)
@@ -393,7 +407,9 @@ class TF1EditorApp:
                 continue
 
             if isinstance(pattern, TextPattern):
-                for stroke in text_to_paths(pattern.text, pattern.x, pattern.y, pattern.size, pattern.font):
+                raw_strokes = [s for s in text_to_paths(pattern.text, pattern.x, pattern.y, pattern.size, pattern.font) if len(s) >= 2]
+                merged_strokes = self._merge_connected_strokes(raw_strokes)
+                for stroke in merged_strokes:
                     if len(stroke) < 2:
                         continue
                     exported.append(
@@ -409,6 +425,72 @@ class TF1EditorApp:
     def _export_point(self, x: float, y: float) -> List[int]:
         return [int(round(clamp_coord(x))), int(round(clamp_coord(y)))]
 
+    def _merge_connected_strokes(self, strokes: List[List[List[float]]]) -> List[List[List[float]]]:
+        if not strokes:
+            return []
+
+        def key(p: List[float]) -> Tuple[int, int]:
+            return (int(round(p[0] * 1000)), int(round(p[1] * 1000)))
+
+        segments: List[Tuple[int, Tuple[int, int], Tuple[int, int], List[float], List[float]]] = []
+        adjacency: Dict[Tuple[int, int], List[int]] = {}
+
+        for idx, seg in enumerate(strokes):
+            a = [float(seg[0][0]), float(seg[0][1])]
+            b = [float(seg[-1][0]), float(seg[-1][1])]
+            ka = key(a)
+            kb = key(b)
+            segments.append((idx, ka, kb, a, b))
+            adjacency.setdefault(ka, []).append(idx)
+            adjacency.setdefault(kb, []).append(idx)
+
+        used: set[int] = set()
+        merged: List[List[List[float]]] = []
+
+        def follow_chain(start_node: Tuple[int, int], first_seg_idx: int) -> List[List[float]]:
+            _, ka, kb, a, b = segments[first_seg_idx]
+            used.add(first_seg_idx)
+
+            if ka == start_node:
+                chain = [a, b]
+                current_node = kb
+            else:
+                chain = [b, a]
+                current_node = ka
+
+            while True:
+                candidates = [sid for sid in adjacency.get(current_node, []) if sid not in used]
+                if not candidates:
+                    break
+                sid = candidates[0]
+                _, sa, sb, pa, pb = segments[sid]
+                used.add(sid)
+                if sa == current_node:
+                    chain.append(pb)
+                    current_node = sb
+                else:
+                    chain.append(pa)
+                    current_node = sa
+            return chain
+
+        # Start with open-chain endpoints (degree != 2) so connected lines become single polylines.
+        for node, seg_ids in adjacency.items():
+            if len(seg_ids) == 2:
+                continue
+            for sid in seg_ids:
+                if sid in used:
+                    continue
+                merged.append(follow_chain(node, sid))
+
+        # Remaining unvisited edges are loops.
+        for sid, ka_kb in enumerate(segments):
+            if sid in used:
+                continue
+            _, ka, _, _, _ = ka_kb
+            merged.append(follow_chain(ka, sid))
+
+        return merged
+
     def import_txt_scene(self) -> None:
         path = filedialog.askopenfilename(
             title="Import TXT Timeline",
@@ -421,15 +503,14 @@ class TF1EditorApp:
         try:
             lines = Path(path).read_text(encoding="utf-8").splitlines()
             items = self._parse_import_lines(lines)
+            settings = self._show_import_settings_dialog(Path(path).stem)
+            if settings is None:
+                return
+            scene = self._build_scene_from_import(items, settings, Path(path).stem)
         except Exception as exc:
             messagebox.showerror("Import failed", str(exc))
             return
 
-        settings = self._show_import_settings_dialog(Path(path).stem)
-        if settings is None:
-            return
-
-        scene = self._build_scene_from_import(items, settings, Path(path).stem)
         self.project.scenes.append(scene)
         self.current_scene = len(self.project.scenes) - 1
         self.current_frame = 0
@@ -438,31 +519,122 @@ class TF1EditorApp:
         self._refresh_scene_list()
         self.status_var.set(f"Imported scene from {Path(path).name}")
 
-    def _parse_import_lines(self, lines: List[str]) -> List[Tuple[float, str]]:
-        items: List[Tuple[float, str]] = []
+    def _parse_import_lines(self, lines: List[str]) -> List[Dict[str, Any]]:
+        items: List[Dict[str, Any]] = []
         i = 0
         while i < len(lines):
             if not lines[i].strip():
                 i += 1
                 continue
 
-            try:
-                offset_sec = float(lines[i].strip())
-            except ValueError as exc:
-                raise ValueError(f"Invalid time offset at line {i + 1}") from exc
-
+            line_no = i + 1
+            offset_sec, style = self._parse_import_offset_line(lines[i], line_no)
             if i + 1 >= len(lines):
-                raise ValueError(f"Missing text line after time offset on line {i + 1}")
+                raise ValueError(f"Missing text line after offset line {line_no}")
             text = lines[i + 1]
-            items.append((offset_sec, text))
 
+            items.append(
+                {
+                    "offset_sec": float(offset_sec),
+                    "text": text,
+                    "style": style,
+                    "line_no": line_no,
+                }
+            )
             i += 3
 
         if not items:
             raise ValueError("No timeline records found")
-        if abs(items[0][0]) > 1e-9:
-            raise ValueError("First time offset must be 0")
+        if abs(items[0]["offset_sec"]) > 1e-9:
+            raise ValueError(f"First offset must be 0 (line {items[0]['line_no']})")
         return items
+
+    def _parse_import_offset_line(self, raw_line: str, line_no: int) -> Tuple[float, Dict[str, Any]]:
+        tokens = raw_line.split()
+        if not tokens:
+            raise ValueError(f"Empty offset line at {line_no}")
+
+        try:
+            offset_sec = float(tokens[0])
+        except ValueError as exc:
+            raise ValueError(f"Invalid offset seconds at line {line_no}: '{tokens[0]}'") from exc
+
+        param_names = {"COLOR", "COLOR_SWITCH_WORD", "COLOR_SWITCH_LETTER", "BOLD", "UNDERLINE", "BOX"}
+        style: Dict[str, Any] = {
+            "base_color": "#FFFFFF",
+            "color_switch_word": None,
+            "color_switch_letter": None,
+            "bold": False,
+            "underline": None,
+            "box": None,
+        }
+
+        idx = 1
+        while idx < len(tokens):
+            name = tokens[idx].upper()
+            if name not in param_names:
+                raise ValueError(f"Unknown parameter '{tokens[idx]}' at line {line_no}")
+            idx += 1
+
+            if name == "BOLD":
+                style["bold"] = True
+                continue
+
+            if name == "COLOR":
+                if idx >= len(tokens):
+                    raise ValueError(f"COLOR requires a hex value at line {line_no}")
+                color = tokens[idx].upper()
+                if not self._is_valid_hex_color(color):
+                    raise ValueError(f"Invalid COLOR '{tokens[idx]}' at line {line_no}")
+                style["base_color"] = color
+                idx += 1
+                continue
+
+            if name in {"COLOR_SWITCH_WORD", "COLOR_SWITCH_LETTER"}:
+                colors: List[str] = []
+                while idx < len(tokens) and tokens[idx].upper() not in param_names:
+                    c = tokens[idx].upper()
+                    if not self._is_valid_hex_color(c):
+                        raise ValueError(f"Invalid color '{tokens[idx]}' for {name} at line {line_no}")
+                    colors.append(c)
+                    idx += 1
+                if not colors:
+                    raise ValueError(f"{name} requires one or more colors at line {line_no}")
+                style["color_switch_word" if name == "COLOR_SWITCH_WORD" else "color_switch_letter"] = colors
+                continue
+
+            if name in {"UNDERLINE", "BOX"}:
+                indices: List[int] = []
+                colors: List[str] = []
+                while idx < len(tokens) and tokens[idx].upper() not in param_names:
+                    tok = tokens[idx]
+                    if self._is_nonnegative_int(tok) and not colors:
+                        indices.append(int(tok))
+                    else:
+                        c = tok.upper()
+                        if not self._is_valid_hex_color(c):
+                            raise ValueError(f"Invalid token '{tok}' for {name} at line {line_no}")
+                        colors.append(c)
+                    idx += 1
+
+                if not colors:
+                    colors = ["#FFFFFF"]
+                target = {"indices": (indices if indices else None), "colors": colors}
+                if target["indices"] is None and len(target["colors"]) > 1:
+                    target["colors"] = [target["colors"][0]]
+                style["underline" if name == "UNDERLINE" else "box"] = target
+                continue
+
+        if style["color_switch_word"] is not None and style["color_switch_letter"] is not None:
+            raise ValueError(f"Use only one of COLOR_SWITCH_WORD or COLOR_SWITCH_LETTER at line {line_no}")
+
+        return offset_sec, style
+
+    def _is_valid_hex_color(self, token: str) -> bool:
+        return len(token) == 7 and token.startswith("#") and all(ch in "0123456789ABCDEFabcdef" for ch in token[1:])
+
+    def _is_nonnegative_int(self, token: str) -> bool:
+        return token.isdigit()
 
     def _show_import_settings_dialog(self, source_name: str) -> Optional[Dict[str, Any]]:
         dialog = tk.Toplevel(self.root)
@@ -474,7 +646,6 @@ class TF1EditorApp:
         offset_x_var = tk.StringVar(value="40")
         offset_y_var = tk.StringVar(value="120")
         center_var = tk.BooleanVar(value=False)
-        font_var = tk.StringVar(value="normal")
         size_var = tk.StringVar(value="28")
 
         body = ttk.Frame(dialog, padding=10)
@@ -488,14 +659,11 @@ class TF1EditorApp:
 
         ttk.Checkbutton(body, text="Center text", variable=center_var).grid(row=2, column=0, columnspan=2, sticky="w", pady=3)
 
-        ttk.Label(body, text="Text Font").grid(row=3, column=0, sticky="w")
-        ttk.Combobox(body, textvariable=font_var, values=["normal", "monospace", "bold"], state="readonly", width=14).grid(row=3, column=1, pady=3, sticky="ew")
-
-        ttk.Label(body, text="Text Size").grid(row=4, column=0, sticky="w")
-        ttk.Entry(body, textvariable=size_var, width=16).grid(row=4, column=1, pady=3, sticky="ew")
+        ttk.Label(body, text="Text Size").grid(row=3, column=0, sticky="w")
+        ttk.Entry(body, textvariable=size_var, width=16).grid(row=3, column=1, pady=3, sticky="ew")
 
         actions = ttk.Frame(body)
-        actions.grid(row=5, column=0, columnspan=2, sticky="e", pady=(8, 0))
+        actions.grid(row=4, column=0, columnspan=2, sticky="e", pady=(8, 0))
 
         result: Dict[str, Any] = {}
 
@@ -511,7 +679,6 @@ class TF1EditorApp:
             result["offset_x"] = ox
             result["offset_y"] = oy
             result["center"] = bool(center_var.get())
-            result["font"] = font_var.get() if font_var.get() in {"normal", "monospace", "bold"} else "normal"
             result["size"] = size
             dialog.destroy()
 
@@ -525,43 +692,195 @@ class TF1EditorApp:
         if not result:
             return None
         return result
-    def _build_scene_from_import(self, items: List[Tuple[float, str]], settings: Dict[str, Any], stem: str) -> Scene:
+
+    def _build_scene_from_import(self, items: List[Dict[str, Any]], settings: Dict[str, Any], stem: str) -> Scene:
         frames: List[Frame] = []
         default_last = 1.0
         if len(items) > 1:
-            default_last = max(0.1, items[-1][0] - items[-2][0])
+            default_last = max(0.001, items[-1]["offset_sec"] - items[-2]["offset_sec"])
 
-        for idx, (offset_sec, text) in enumerate(items):
+        for idx, item in enumerate(items):
+            offset_sec = item["offset_sec"]
+            text = item["text"]
+            style = item["style"]
+            line_no = item["line_no"]
+            font = "bold" if style["bold"] else "normal"
+
             if idx + 1 < len(items):
-                duration_sec = max(0.1, items[idx + 1][0] - offset_sec)
+                duration_sec = max(0.001, items[idx + 1]["offset_sec"] - offset_sec)
             else:
                 duration_sec = default_last
 
             x, y = self._import_text_position(
                 text=text,
-                font=settings["font"],
+                font=font,
                 size=settings["size"],
                 center=settings["center"],
                 offset_x=settings["offset_x"],
                 offset_y=settings["offset_y"],
             )
 
+            patterns = self._build_import_patterns(text, x, y, settings["size"], font, style, line_no)
             frame = Frame(
-                time_ms=max(1, int(duration_sec * 1000)),
-                patterns=[
-                    TextPattern(
-                        text=text,
-                        x=x,
-                        y=y,
-                        size=settings["size"],
-                        color="#FFFFFF",
-                        font=settings["font"],
-                    )
-                ],
+                time_ms=max(1, int(round(duration_sec * 1000.0))),
+                patterns=patterns,
             )
             frames.append(frame)
 
         return Scene(name=f"Imported {stem}", frames=frames)
+
+    def _build_import_patterns(
+        self,
+        text: str,
+        x: float,
+        y: float,
+        size: float,
+        font: str,
+        style: Dict[str, Any],
+        line_no: int,
+    ) -> List[PathPattern]:
+        patterns: List[PathPattern] = []
+        scale = size / 7.0
+        char_w = 5.0 * scale
+        gap = scale * (1.8 if font in {"normal", "monospace"} else 1.4)
+        step = char_w + gap
+
+        if style["color_switch_letter"] is not None:
+            colors = style["color_switch_letter"]
+            letter_i = 0
+            for i, ch in enumerate(text):
+                if ch == " ":
+                    continue
+                color = colors[letter_i % len(colors)]
+                letter_i += 1
+                strokes = text_to_paths(ch, x + i * step, y, size, font)
+                patterns.extend(self._strokes_to_path_patterns(strokes, color))
+        elif style["color_switch_word"] is not None:
+            colors = style["color_switch_word"]
+            words = self._word_spans(text)
+            for word_i, (start_idx, _end_idx, word) in enumerate(words):
+                color = colors[word_i % len(colors)]
+                strokes = text_to_paths(word, x + start_idx * step, y, size, font)
+                patterns.extend(self._strokes_to_path_patterns(strokes, color))
+        else:
+            strokes = text_to_paths(text, x, y, size, font)
+            patterns.extend(self._strokes_to_path_patterns(strokes, style["base_color"]))
+
+        words = self._word_spans(text)
+        if style["underline"] is not None:
+            patterns.extend(
+                self._build_decorations(
+                    text=text,
+                    words=words,
+                    x=x,
+                    y=y,
+                    char_w=char_w,
+                    step=step,
+                    scale=scale,
+                    kind="underline",
+                    config=style["underline"],
+                    line_no=line_no,
+                )
+            )
+        if style["box"] is not None:
+            patterns.extend(
+                self._build_decorations(
+                    text=text,
+                    words=words,
+                    x=x,
+                    y=y,
+                    char_w=char_w,
+                    step=step,
+                    scale=scale,
+                    kind="box",
+                    config=style["box"],
+                    line_no=line_no,
+                )
+            )
+        return patterns
+
+    def _word_spans(self, text: str) -> List[Tuple[int, int, str]]:
+        spans: List[Tuple[int, int, str]] = []
+        i = 0
+        while i < len(text):
+            if text[i] == " ":
+                i += 1
+                continue
+            start = i
+            while i < len(text) and text[i] != " ":
+                i += 1
+            spans.append((start, i, text[start:i]))
+        return spans
+
+    def _strokes_to_path_patterns(self, strokes: List[List[List[float]]], color: str) -> List[PathPattern]:
+        out: List[PathPattern] = []
+        c = normalize_color(color)
+        for stroke in strokes:
+            if len(stroke) < 2:
+                continue
+            out.append(
+                PathPattern(
+                    close=False,
+                    color=c,
+                    points=[[clamp_coord(p[0]), clamp_coord(p[1])] for p in stroke],
+                )
+            )
+        return out
+
+    def _build_decorations(
+        self,
+        text: str,
+        words: List[Tuple[int, int, str]],
+        x: float,
+        y: float,
+        char_w: float,
+        step: float,
+        scale: float,
+        kind: str,
+        config: Dict[str, Any],
+        line_no: int,
+    ) -> List[PathPattern]:
+        indices = config["indices"]
+        colors = config["colors"] or ["#FFFFFF"]
+        out: List[PathPattern] = []
+
+        targets: List[Tuple[int, int]] = []
+        if indices is None:
+            if not text.strip():
+                return out
+            if words:
+                targets = [(words[0][0], words[-1][1])]
+            else:
+                targets = [(0, len(text))]
+            colors = [colors[0]]
+        else:
+            if not words:
+                raise ValueError(f"{kind.upper()} at line {line_no} requires words in the text line")
+            for idx in indices:
+                if idx < 0 or idx >= len(words):
+                    raise ValueError(f"{kind.upper()} word index {idx} out of range at line {line_no}")
+                targets.append((words[idx][0], words[idx][1]))
+
+        for i, (start_idx, end_idx) in enumerate(targets):
+            if end_idx <= start_idx:
+                continue
+            color = normalize_color(colors[i % len(colors)])
+            x0 = clamp_coord(x + start_idx * step)
+            x1 = clamp_coord(x + (end_idx - 1) * step + char_w)
+            if kind == "underline":
+                yy = clamp_coord(y + 7.6 * scale)
+                out.append(PathPattern(close=False, color=color, points=[[x0, yy], [x1, yy]]))
+            else:
+                top = clamp_coord(y - 0.6 * scale)
+                bottom = clamp_coord(y + 7.6 * scale)
+                out.append(
+                    PathPattern(
+                        close=True,
+                        color=color,
+                        points=[[x0, top], [x1, top], [x1, bottom], [x0, bottom]],
+                    )
+                )
+        return out
 
     def _import_text_position(self, text: str, font: str, size: float, center: bool, offset_x: float, offset_y: float) -> Tuple[float, float]:
         if not center:
@@ -618,7 +937,7 @@ class TF1EditorApp:
         self.selected_point = None
         self._refresh_frame_list()
 
-    def apply_frame_time(self) -> None:
+    def apply_frame_time(self, refresh: bool = True) -> None:
         try:
             ms = int(self.frame_time_var.get())
         except ValueError:
@@ -626,7 +945,8 @@ class TF1EditorApp:
         ms = max(1, min(60000, ms))
         self.active_frame().time_ms = ms
         self.frame_time_var.set(str(ms))
-        self._refresh_frame_list()
+        if refresh:
+            self._refresh_frame_list()
 
     def on_scene_select(self, _event: object) -> None:
         if self.preview_running:
@@ -652,6 +972,41 @@ class TF1EditorApp:
         self.selected_pattern = None
         self.selected_point = None
         self._refresh_pattern_list()
+
+    def on_frame_click(self, event: tk.Event) -> None:
+        if self.preview_running:
+            return
+        if self.frame_list.size() == 0:
+            return
+        idx = self.frame_list.nearest(event.y)
+        if idx < 0:
+            return
+        self.frame_list.selection_clear(0, tk.END)
+        self.frame_list.selection_set(idx)
+        self.frame_list.activate(idx)
+        self.on_frame_select(event)
+
+    def _move_frame_selection(self, delta: int) -> None:
+        if self.preview_running or self.frame_list.size() == 0:
+            return
+        current = self.frame_list.curselection()
+        idx = current[0] if current else self.current_frame
+        target = max(0, min(self.frame_list.size() - 1, idx + delta))
+        if target == idx:
+            return
+        self.frame_list.selection_clear(0, tk.END)
+        self.frame_list.selection_set(target)
+        self.frame_list.activate(target)
+        self.frame_list.see(target)
+        self.on_frame_select(None)
+
+    def on_frame_up(self, _event: tk.Event) -> str:
+        self._move_frame_selection(-1)
+        return "break"
+
+    def on_frame_down(self, _event: tk.Event) -> str:
+        self._move_frame_selection(1)
+        return "break"
 
     def on_pattern_select(self, _event: object) -> None:
         if self.preview_running:
@@ -727,7 +1082,7 @@ class TF1EditorApp:
         self.redraw_canvas()
 
     def _commit_ui_to_model(self) -> None:
-        self.apply_frame_time()
+        self.apply_frame_time(refresh=False)
 
     def _selected_pattern_obj(self):
         if self.selected_pattern is None:

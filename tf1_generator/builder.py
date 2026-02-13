@@ -43,6 +43,97 @@ class BuildOptions:
     canvas_height: int = 360
 
 
+def _distance_point_to_line(p: Point, a: Point, b: Point) -> float:
+    dx = b.x - a.x
+    dy = b.y - a.y
+    if dx == 0.0 and dy == 0.0:
+        return math.hypot(p.x - a.x, p.y - a.y)
+    num = abs(dy * p.x - dx * p.y + b.x * a.y - b.y * a.x)
+    den = math.hypot(dx, dy)
+    return num / den
+
+
+def _douglas_peucker(points: list[Point], epsilon: float) -> list[Point]:
+    if len(points) <= 2 or epsilon <= 0.0:
+        return list(points)
+
+    first = points[0]
+    last = points[-1]
+    max_dist = -1.0
+    split_idx = -1
+    for i in range(1, len(points) - 1):
+        d = _distance_point_to_line(points[i], first, last)
+        if d > max_dist:
+            max_dist = d
+            split_idx = i
+
+    if max_dist > epsilon and split_idx >= 0:
+        left = _douglas_peucker(points[: split_idx + 1], epsilon)
+        right = _douglas_peucker(points[split_idx:], epsilon)
+        return left[:-1] + right
+    return [first, last]
+
+
+def _split_segments(points: list[Point]) -> list[list[Point]]:
+    if not points:
+        return []
+    segments: list[list[Point]] = []
+    current: list[Point] = []
+    for i, p in enumerate(points):
+        if i > 0 and p.start and current:
+            segments.append(current)
+            current = []
+        current.append(p)
+    if current:
+        segments.append(current)
+    return segments
+
+
+def simplify_pattern(pattern: Pattern, epsilon: float) -> Pattern:
+    if epsilon <= 0.0 or len(pattern.points) <= 2:
+        return pattern
+
+    segments = _split_segments(pattern.points)
+    simplified_points: list[Point] = []
+    for seg in segments:
+        if len(seg) <= 2:
+            out_seg = list(seg)
+        elif pattern.close and len(seg) > 3:
+            loop = seg + [seg[0]]
+            out_loop = _douglas_peucker(loop, epsilon)
+            out_seg = out_loop[:-1] if len(out_loop) > 1 else list(seg[:2])
+        else:
+            out_seg = _douglas_peucker(seg, epsilon)
+
+        if len(out_seg) < 2:
+            out_seg = list(seg[:2]) if len(seg) >= 2 else list(seg)
+
+        for i, p in enumerate(out_seg):
+            simplified_points.append(Point(x=p.x, y=p.y, color=p.color, start=(i == 0)))
+
+    close = pattern.close
+    if close and len(simplified_points) < 3:
+        close = False
+    return Pattern(points=simplified_points, close=close)
+
+
+def simplify_scenes(scenes: list[Scene], epsilon: float) -> list[Scene]:
+    if epsilon <= 0.0:
+        return scenes
+    out: list[Scene] = []
+    for scene in scenes:
+        out_patterns = [simplify_pattern(p, epsilon) for p in scene.patterns]
+        out.append(
+            Scene(
+                time_ms=scene.time_ms,
+                play_mode=scene.play_mode,
+                patterns=out_patterns,
+                channel_values=list(scene.channel_values),
+            )
+        )
+    return out
+
+
 def _int_to_le(value: int, size: int) -> list[int]:
     return [(value >> (8 * i)) & 0xFF for i in range(size)]
 
@@ -174,14 +265,16 @@ def build_tf1_payload(scenes: list[Scene], opts: BuildOptions) -> bytes:
     payload.extend([48, 0, 0, 0])
 
     unique_pattern_hex: list[str] = []
-    scene_rows: list[tuple[str, Scene]] = []
+    pattern_index_map: dict[str, int] = {}
+    scene_rows: list[tuple[int, Scene]] = []
     channel_count = 0
     for scene in scenes:
         pattern_hex = encode_patterns(scene.patterns, opts.canvas_width, opts.canvas_height)
-        if pattern_hex not in unique_pattern_hex:
+        if pattern_hex not in pattern_index_map:
+            pattern_index_map[pattern_hex] = len(unique_pattern_hex)
             unique_pattern_hex.append(pattern_hex)
         channel_count = len(scene.channel_values)
-        scene_rows.append((pattern_hex, scene))
+        scene_rows.append((pattern_index_map[pattern_hex], scene))
 
     index_table_start = 48 + 4 * len(unique_pattern_hex) + 4
     payload.extend(_int_to_le(index_table_start, 4))
@@ -198,8 +291,7 @@ def build_tf1_payload(scenes: list[Scene], opts: BuildOptions) -> bytes:
         p_end += len(pattern_hex) // 2
         payload.extend(_int_to_le(p_end, 4))
 
-    for i, (pattern_hex, scene) in enumerate(scene_rows):
-        pattern_index = unique_pattern_hex.index(pattern_hex)
+    for i, (pattern_index, scene) in enumerate(scene_rows):
         duration_10ms = int(scene.time_ms // 10)
         play_mode = int(scene.play_mode)
         if i == len(scene_rows) - 1:

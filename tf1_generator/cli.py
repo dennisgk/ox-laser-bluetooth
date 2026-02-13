@@ -15,9 +15,11 @@ from .builder import (
     build_handshake_frame,
     build_tf1_payload,
     chunk_payload,
+    encode_patterns,
     load_default_channels,
     scene_from_seq_entry,
     scene_from_simple_entry,
+    simplify_scenes,
     write_header_file,
 )
 
@@ -54,6 +56,12 @@ def parse_args() -> argparse.Namespace:
         help="Protocol chunk payload bytes for frame preview",
     )
     parser.add_argument("--show-frames", action="store_true", help="Print cmd17/cmd18 frames in hex")
+    parser.add_argument(
+        "--simplify-epsilon",
+        type=float,
+        default=0.0,
+        help="Douglas-Peucker simplify tolerance in canvas units (0 disables)",
+    )
     return parser.parse_args()
 
 
@@ -84,6 +92,11 @@ def main() -> None:
     if not scenes:
         raise SystemExit("No scenes found in input")
 
+    if args.simplify_epsilon < 0:
+        raise SystemExit("simplify-epsilon must be >= 0")
+    if args.simplify_epsilon > 0:
+        scenes = simplify_scenes(scenes, args.simplify_epsilon)
+
     opts = BuildOptions(
         tf1_name=args.name,
         weight=(args.weight if args.weight is not None else weight),
@@ -91,6 +104,17 @@ def main() -> None:
         canvas_width=args.canvas_width,
         canvas_height=args.canvas_height,
     )
+
+    pattern_hex_per_scene = [
+        encode_patterns(s.patterns, opts.canvas_width, opts.canvas_height)
+        for s in scenes
+    ]
+    raw_pattern_bytes = sum(len(hx) // 2 for hx in pattern_hex_per_scene)
+    unique_pattern_hex = list(dict.fromkeys(pattern_hex_per_scene))
+    unique_pattern_bytes = sum(len(hx) // 2 for hx in unique_pattern_hex)
+    dedup_saved_bytes = raw_pattern_bytes - unique_pattern_bytes
+    dedup_percent = (dedup_saved_bytes / raw_pattern_bytes * 100.0) if raw_pattern_bytes > 0 else 0.0
+    reused_scene_count = len(pattern_hex_per_scene) - len(unique_pattern_hex)
 
     payload = build_tf1_payload(scenes, opts)
     args.output.write_bytes(payload)
@@ -101,6 +125,12 @@ def main() -> None:
     print(f"Wrote TF1 payload ({len(payload)} bytes): {args.output}")
     if not args.no_header:
         print(f"Updated ESP header: {args.emit_header}")
+    print(
+        "Pattern dedup: "
+        f"{len(unique_pattern_hex)}/{len(pattern_hex_per_scene)} unique blobs, "
+        f"saved {dedup_saved_bytes} bytes "
+        f"({dedup_percent:.2f}%), reused-by-scenes={reused_scene_count}"
+    )
 
     if args.show_frames:
         hs = build_handshake_frame(len(payload))
